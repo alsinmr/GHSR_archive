@@ -1,0 +1,36 @@
+NT_1:   resid  32 to  35
+NT_2:   resid  35 to  39
+1 ex:   resid  42 to  54
+1 in:   resid  58 to  68
+ICL1_1: resid  71 to  75
+ICL1_2: resid  75 to  77
+2 in:   resid  81 to  94
+2 ex:   resid  98 to 105
+ECL1_1: resid 106 to 109
+ECL1_2: resid 109 to 112
+3 ex:   resid 116 to 126
+3 in:   resid 130 to 142
+ICL2_1: resid 147 to 150
+ICL2_2: resid 150 to 154
+ICL2_3: resid 154 to 157
+4 in:   resid 162 to 174
+4 ex:   resid 177 to 182
+ECL2_1: resid 182 to 186
+ECL2_2: resid 186 to 189
+ECL2_3: resid 189 to 192
+ECL2_4: resid 192 to 195
+ECL2_5: resid 195 to 201
+ECL2_6: resid 201 to 208
+5 ex:   resid 212 to 220
+5 in:   resid 225 to 233
+ICL3_1: resid 240 to 243
+ICL3_2: resid 243 to 246
+ICL3_3: resid 246 to 249
+ICL3_4: resid 249 to 252
+6 in:   resid 257 to 275
+6 ex:   resid 278 to 286
+ECL3_1: resid 291 to 294
+ECL3_2: resid 294 to 296
+7 ex:   resid 302 to 314
+7 in:   resid 320 to 326
+8:      resid 327 to 339
