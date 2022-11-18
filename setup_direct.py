@@ -35,10 +35,10 @@ When this is ported to the server, we need to change
 """
 
 #%% File locations
-# proj=pyDR.Project('/work/home/alsi/GHSR/Projects/backboneHN',create=True)
-proj=pyDR.Project()
+proj=pyDR.Project('/work/home/alsi/GHSR/Projects/backboneHN',create=True)
+# proj=pyDR.Project()
 mddir='/work/public/ghrelin-receptor'
-mddir='/Volumes/My Book/GHSR'
+# mddir='/Volumes/My Book/GHSR'
 
 topos=['WT-apo_run1_just_protein.pdb','WT-ghrelin_run1_just_protein.pdb']
 trajs=[[f'WT-apo_run{k}_0.1ns_just_protein.xtc' for k in range(1,4)],
@@ -48,7 +48,7 @@ trajs=[[f'WT-apo_run{k}_0.1ns_just_protein.xtc' for k in range(1,4)],
 for topo,traj1 in zip(topos,trajs):
     for traj in traj1:
         sel=pyDR.MolSelect(topo=os.path.join(mddir,topo),
-                           traj_files=os.path.join(mddir,traj),step=100,project=proj)
+                           traj_files=os.path.join(mddir,traj),step=1,project=proj)
         
         sel.select_bond(Nuc='N')            #Select H–N bonds
         frames=pyDR.Frames.FrameObj(sel)    #Create frame object 
