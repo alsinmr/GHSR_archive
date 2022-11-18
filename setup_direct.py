@@ -6,9 +6,12 @@ Created on Fri Nov 18 10:24:26 2022
 @author: albertsmith
 """
 
+import sys
+sys.path.append('/work/home/alsi/python')
 import pyDR
 import os
 import numpy as np
+
 
 def load_helices():
     name=list()
