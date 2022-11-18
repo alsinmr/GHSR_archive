@@ -35,7 +35,7 @@ When this is ported to the server, we need to change
 """
 
 #%% File locations
-proj=pyDR.Project('/work/home/alsi/GHSR/Projects/backboneHN',create=True)
+proj=pyDR.Project('/work/home/alsi/GitHub/GHSR_archive/Projects/backboneHN',create=True)
 # proj=pyDR.Project()
 mddir='/work/public/ghrelin-receptor'
 # mddir='/Volumes/My Book/GHSR'
