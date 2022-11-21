@@ -1,0 +1,8 @@
+None:WT-ghrelin_run1_just_protein:/work/public/ghrelin-receptor/WT-ghrelin_run1_just_protein.pdb
+/work/home/alsi/GitHub/GHSR_archive/Projects/ghrelin_iRED_half/data/n15_IREDMODE_rk1_PAS_superimpose_WT_ghrelin_run1_0_1ns_just_protein.data:WT-ghrelin_run1_just_protein:/work/public/ghrelin-receptor/WT-ghrelin_run1_just_protein.pdb
+None:WT-ghrelin_run1_just_protein:/work/public/ghrelin-receptor/WT-ghrelin_run1_just_protein.pdb
+/work/home/alsi/GitHub/GHSR_archive/Projects/ghrelin_iRED_half/data/n15_IREDMODE_rk1_PAS_superimpose_WT_ghrelin_run1_0_1ns_just_protein1.data:WT-ghrelin_run1_just_protein:/work/public/ghrelin-receptor/WT-ghrelin_run1_just_protein.pdb
+None:WT-ghrelin_run1_just_protein:/work/public/ghrelin-receptor/WT-ghrelin_run1_just_protein.pdb
+/work/home/alsi/GitHub/GHSR_archive/Projects/ghrelin_iRED_half/data/n15_IREDMODE_rk1_PAS_superimpose_WT_ghrelin_run2_0_1ns_just_protein.data:WT-ghrelin_run1_just_protein:/work/public/ghrelin-receptor/WT-ghrelin_run1_just_protein.pdb
+None:WT-ghrelin_run1_just_protein:/work/public/ghrelin-receptor/WT-ghrelin_run1_just_protein.pdb
+/work/home/alsi/GitHub/GHSR_archive/Projects/ghrelin_iRED_half/data/n15_IREDMODE_rk1_PAS_superimpose_WT_ghrelin_run2_0_1ns_just_protein1.data:WT-ghrelin_run1_just_protein:/work/public/ghrelin-receptor/WT-ghrelin_run1_just_protein.pdb
