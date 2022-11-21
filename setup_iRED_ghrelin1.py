@@ -29,7 +29,7 @@ trajs=[f'WT-ghrelin_run{k}_0.1ns_just_protein.xtc' for k in range(1,4)]
 for traj in trajs:
     for t0,tf in zip([0,177500],[177500,355000]):
         molsys=pyDR.MolSys(topo=os.path.join(mddir,topo),
-                           traj_files=os.path.join(mddir,traj),step=100,
+                           traj_files=os.path.join(mddir,traj),step=1,
                            t0=t0,tf=tf,project=proj)
         
         sel=pyDR.MolSelect(molsys)
