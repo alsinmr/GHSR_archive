@@ -7,7 +7,7 @@ Created on Fri Nov 18 10:24:26 2022
 """
 
 import sys
-sys.path.append('/work/home/alsi/python')
+sys.path.append('/work/home/alsi/GitHub')
 import pyDR
 import os
 import numpy as np

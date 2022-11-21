@@ -7,7 +7,7 @@ Created on Tue Oct 18 10:34:51 2022
 """
 
 import sys
-sys.path.append('/work/home/alsi/python')
+sys.path.append('/work/home/alsi/GitHub')
 import pyDR
 import os
 import numpy as np
@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 def load_helices():
     name=list()
     resids=list()
-    with open('/Users/albertsmith/Documents/Dynamics/GHSR/helix_assign.txt','r') as f:
+    with open('helix_assign.txt','r') as f:
         for line in f:
             name.append(line.strip().split(':')[0])
             ar=np.arange(\
