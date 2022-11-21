@@ -22,3 +22,27 @@ title:	n15:FRAMES:PAS>superimpose:WT-ghrelin_run2_0.1ns_just_protein
 additional_info:	PAS>superimpose
 filename:	n15_FRAMES_PAS_superimpose_WT_ghrelin_run2_0_1ns_just_protein.data
 END:DATA
+DATA
+Type:	Frames
+status:	no_opt
+short_file:	WT-ghrelin_run2_0.1ns_just_protein.xtc
+title:	n15:FRAMES:PAS>superimpose:WT-ghrelin_run2_0.1ns_just_protein
+additional_info:	PAS>superimpose
+filename:	n15_FRAMES_PAS_superimpose_WT_ghrelin_run2_0_1ns_just_protein1.data
+END:DATA
+DATA
+Type:	Frames
+status:	no_opt
+short_file:	WT-ghrelin_run3_0.1ns_just_protein.xtc
+title:	n15:FRAMES:PAS>superimpose:WT-ghrelin_run3_0.1ns_just_protein
+additional_info:	PAS>superimpose
+filename:	n15_FRAMES_PAS_superimpose_WT_ghrelin_run3_0_1ns_just_protein.data
+END:DATA
+DATA
+Type:	Frames
+status:	no_opt
+short_file:	WT-ghrelin_run3_0.1ns_just_protein.xtc
+title:	n15:FRAMES:PAS>superimpose:WT-ghrelin_run3_0.1ns_just_protein
+additional_info:	PAS>superimpose
+filename:	n15_FRAMES_PAS_superimpose_WT_ghrelin_run3_0_1ns_just_protein1.data
+END:DATA
