@@ -29,7 +29,7 @@ def load_helices():
 
 
 #%% File locations
-proj=pyDR.Project('/work/base/alsi/GitHub/GHSR_archive/Projects/ghrelin_iRED',create=True)
+proj=pyDR.Project('Projects/ghrelin_iRED',create=True)
 
 
 mddir='/work/public/ghrelin-receptor'
