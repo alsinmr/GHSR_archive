@@ -38,3 +38,11 @@ title:	n15:FRAMES:chunk1:WT-ghrelin_run1_0.1ns_just_protein
 additional_info:	chunk1
 filename:	n15_FRAMES_chunk1_WT_ghrelin_run1_0_1ns_just_protein.data
 END:DATA
+DATA
+Type:	Frames
+status:	no_opt
+short_file:	WT-ghrelin_run1_0.1ns_just_protein.xtc
+title:	n15:FRAMES:chunk2:WT-ghrelin_run1_0.1ns_just_protein
+additional_info:	chunk2
+filename:	n15_FRAMES_chunk2_WT_ghrelin_run1_0_1ns_just_protein.data
+END:DATA
