@@ -11,23 +11,22 @@ import sys
 sys.path.append('/work/home/alsi/GitHub')
 import pyDR
 from pyDR.misc.Averaging import avgDataObjs
-from misc_functions import color_code
-
-#%% Function for color-coding protein regions
-
 
 
 #%% Load the project and optimize/fit the detectors
 proj=pyDR.Project('Projects/backboneHN')
-proj['no_opt'].detect.r_auto(7)
-proj['no_opt'].fit()
-proj['proc'].opt2dist(rhoz_cleanup=True)
 
+#Average the 3x2 trajectories
+avgDataObjs(proj['.+ApOb.+WT-apo'])
+# avgDataObjs(proj['.+ApOb.+WT-ghrelin'])
 
-avgDataObjs(proj['.+WT-apo']['opt_fit'])
-avgDataObjs(proj['.+WT-ghrelin']['opt_fit'])
+proj['no_opt']['.+AvOb'].detect.r_auto(7)
+proj['no_opt']['.+AvOb'].fit()
+proj['proc']['.+AvOb'].opt2dist(rhoz_cleanup=True)
 
+#%% Plot the results
 proj['opt_fit']['.+AvOb'].plot()
+
 for a in proj.plot_obj.ax:a.set_ylim([0,1])
 proj.plot_obj.ax[0].set_xlim([30,340])
 proj.plot_obj.show_tc()
@@ -35,3 +34,13 @@ proj.plot_obj.ax_sens.set_xlim([-11.5,-3.5])
 proj.plot_obj.fig.set_size_inches([6.53, 9.01])
 
 proj.savefig('apo_v_bound.pdf')
+
+proj.chimera.saved_commands=[]
+cmds=['~show ~@N,C,CA,H','~show #2/A','show #2/A@N,C,CA',
+        'move x -82.612 coordinateSystem #2 atoms #2/A','color #2/A slate grey','cartoon style #2/A thickness .8',
+        'turn x -90','turn y 15 models #1','turn y 15 models #2','lighting full','graphics silhouettes true','view','zoom 1.15','ribbon #2/A']
+for k in range(proj[-1].R.shape[1]):
+    proj.chimera.close()
+    proj['opt_fit'].chimera(scaling=1.5,rho_index=k)
+    proj.chimera.command_line(cmds)
+    proj.chimera.savefig('rho{0}'.format(k),'transparentBackground True')
