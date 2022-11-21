@@ -68,7 +68,7 @@ for topo,traj1 in zip(topos,trajs):
             proj.remove_data([-4,-3,-1],delete=True)
             proj[-1].source.additional_info=f'chunk{k}'
             proj.update_info()
-            proj[-1].detect.r_no_opt(5)
+            proj[-1].detect.r_no_opt(15)
             proj[-1].fit()
             proj.clear_memory()
         
