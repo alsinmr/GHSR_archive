@@ -50,7 +50,7 @@ for topo,traj1 in zip(topos,trajs):
     for traj in traj1:
         sel=pyDR.MolSelect(topo=os.path.join(mddir,topo),
                            traj_files=os.path.join(mddir,traj),
-                           step=1,project=proj,tf=None)
+                           step=1,project=proj,tf=355000)
         
         resids=sel.uni.residues.resids
         
