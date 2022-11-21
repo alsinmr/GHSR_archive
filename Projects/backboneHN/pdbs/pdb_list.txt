@@ -1,3 +1,4 @@
-n15_FRAMES_chunk0_WT_apo_run1_0_1ns_just_protein.data:WT-apo_run1_just_protein:/work/public/ghrelin-receptor/WT-apo_run1_just_protein.pdb
-n15_FRAMES_chunk0_WT_apo_run2_0_1ns_just_protein.data:WT-apo_run1_just_protein:/work/public/ghrelin-receptor/WT-apo_run1_just_protein.pdb
-n15_FRAMES_chunk0_WT_apo_run3_0_1ns_just_protein.data:WT-apo_run1_just_protein:/work/public/ghrelin-receptor/WT-apo_run1_just_protein.pdb
+n15_FRAMES_chunk0_WT_apo_run1_0_1ns_just_protein.data:WT-apo_run1_just_protein1:/work/public/ghrelin-receptor/WT-apo_run1_just_protein.pdb
+n15_FRAMES_chunk0_WT_apo_run2_0_1ns_just_protein.data:WT-apo_run1_just_protein1:/work/public/ghrelin-receptor/WT-apo_run1_just_protein.pdb
+n15_FRAMES_chunk0_WT_apo_run3_0_1ns_just_protein.data:WT-apo_run1_just_protein1:/work/public/ghrelin-receptor/WT-apo_run1_just_protein.pdb
+/work/home/alsi/GitHub/GHSR_archive/Projects/backboneHN/data/n15_FRAMES_chunk0_WT_ghrelin_run1_0_1ns_just_protein.data:WT-ghrelin_run1_just_protein:/work/public/ghrelin-receptor/WT-ghrelin_run1_just_protein.pdb
