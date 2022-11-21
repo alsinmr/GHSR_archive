@@ -37,7 +37,6 @@ When this is ported to the server, we need to change
 
 #%% File locations
 proj=pyDR.Project('Projects/backboneHN',create=True)
-# proj=pyDR.Project('Projects/dummy',create=True)
 mddir='/work/public/ghrelin-receptor'
 # mddir='/Volumes/My Book/GHSR'
 
