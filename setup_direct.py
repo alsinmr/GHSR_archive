@@ -42,7 +42,7 @@ for topo,traj1 in zip(topos[1:],trajs[1:]):
         resids=sel.uni.residues.resids
         
         for k in range(5):  #Process in 5 chunks
-            sel.select_bond(Nuc='N',resids=resids[62*k:62*(k+1)])            #Select H–N bonds
+            sel.select_bond(Nuc='N',resids=resids[65*k:65*(k+1)])            #Select H–N bonds
             frames=pyDR.Frames.FrameObj(sel)    #Create frame object 
             frames.tensor_frame(sel1=1,sel2=2)  #Define tensor frame (H–N bond)
             _,hlx=load_helices()  #Use helices for alignment
