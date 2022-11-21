@@ -35,14 +35,15 @@ trajs=[[f'WT-apo_run{k}_0.1ns_just_protein.xtc' for k in range(1,4)],
 
 for topo,traj1 in zip(topos[1:],trajs[1:]):
     for traj in traj1:
-        sel=pyDR.MolSelect(topo=os.path.join(mddir,topo),
-                           traj_files=os.path.join(mddir,traj),
-                           step=1,project=proj,tf=355000)
-        
-        resids=sel.uni.residues.resids
-        
-        for k in range(5):  #Process in 5 chunks
-            sel.select_bond(Nuc='N',resids=resids[62*k:62*(k+1)])            #Select H–N bonds
+        for ti,tf in zip([0,177500],[177500,355000]):
+            sel=pyDR.MolSelect(topo=os.path.join(mddir,topo),
+                               traj_files=os.path.join(mddir,traj),
+                               step=1,project=proj,ti=ti,tf=tf)
+            
+            resids=sel.uni.residues.resids
+            
+            sel.select_bond(Nuc='N')
+
             frames=pyDR.Frames.FrameObj(sel)    #Create frame object 
             frames.tensor_frame(sel1=1,sel2=2)  #Define tensor frame (H–N bond)
             _,hlx=load_helices()  #Use helices for alignment
@@ -51,16 +52,10 @@ for topo,traj1 in zip(topos[1:],trajs[1:]):
             frames.new_frame(Type='superimpose',sel=fr_sel)  #Remove overall motion
             
             frames.frames2data()
-            
+                
             proj.remove_data([-4,-3,-1],delete=True)
-            proj[-1].source.additional_info=f'chunk{k}'
-            proj.update_info()
             proj[-1].detect.r_no_opt(15)
             proj[-1].fit()
             proj.clear_memory()
-        
-        appendDataObjs(proj[-5:])    
-        proj.remove_data([-6,-5,-4,-3,-2],delete=True)
-        proj[-1].source.additional_info=None
-        
+                        
             
