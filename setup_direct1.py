@@ -35,10 +35,10 @@ trajs=[[f'WT-apo_run{k}_0.1ns_just_protein.xtc' for k in range(1,4)],
 
 for topo,traj1 in zip(topos[1:],trajs[1:]):
     for traj in traj1:
-        for ti,tf in zip([0,177500],[177500,355000]):
+        for t0,tf in zip([0,177500],[177500,355000]):
             sel=pyDR.MolSelect(topo=os.path.join(mddir,topo),
                                traj_files=os.path.join(mddir,traj),
-                               step=1,project=proj,ti=ti,tf=tf)
+                               step=1,project=proj,t0=t0,tf=tf)
             
             resids=sel.uni.residues.resids
             
