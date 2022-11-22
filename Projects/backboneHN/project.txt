@@ -2,24 +2,24 @@ DATA
 Type:	Frames
 status:	no_opt
 short_file:	WT-apo_run1_0.1ns_just_protein.xtc
-title:	n15:FRAMES:ApOb_chunk0:WT-apo_run1_0.1ns_just_protein
-additional_info:	ApOb_chunk0
+title:	n15:FRAMES:WT-apo_run1_0.1ns_just_protein
+additional_info:	None
 filename:	n15_FRAMES_chunk0_WT_apo_run1_0_1ns_just_protein.data
 END:DATA
 DATA
 Type:	Frames
 status:	no_opt
 short_file:	WT-apo_run2_0.1ns_just_protein.xtc
-title:	n15:FRAMES:ApOb_chunk0:WT-apo_run2_0.1ns_just_protein
-additional_info:	ApOb_chunk0
+title:	n15:FRAMES:WT-apo_run2_0.1ns_just_protein
+additional_info:	None
 filename:	n15_FRAMES_chunk0_WT_apo_run2_0_1ns_just_protein.data
 END:DATA
 DATA
 Type:	Frames
 status:	no_opt
 short_file:	WT-apo_run3_0.1ns_just_protein.xtc
-title:	n15:FRAMES:ApOb_chunk0:WT-apo_run3_0.1ns_just_protein
-additional_info:	ApOb_chunk0
+title:	n15:FRAMES:WT-apo_run3_0.1ns_just_protein
+additional_info:	None
 filename:	n15_FRAMES_chunk0_WT_apo_run3_0_1ns_just_protein.data
 END:DATA
 DATA
