@@ -37,12 +37,7 @@ for topo,traj1 in zip(topos[1:],trajs[1:]):
     for traj in traj1:
         sel=pyDR.MolSelect(topo=os.path.join(mddir,topo),
                            traj_files=os.path.join(mddir,traj),
-<<<<<<< HEAD
-                           step=100,project=proj,tf=355000)
-=======
-                           step=10,project=proj,tf=35500)
->>>>>>> 8b6822f3173bdff5ca56454331334fcda8374057
-        
+                           step=1,project=proj,tf=355000)
         resids=sel.uni.residues.resids
         
         for k in range(5):  #Process in 5 chunks
@@ -59,12 +54,12 @@ for topo,traj1 in zip(topos[1:],trajs[1:]):
             proj.remove_data([-4,-3,-1],delete=True)
             proj[-1].source.additional_info=f'chunk{k}'
             proj.update_info()
-            proj[-1].detect.r_no_opt(5)
+            proj[-1].detect.r_no_opt(15)
             proj[-1].fit()
             proj.clear_memory()
         
         appendDataObjs(proj[-5:])    
-        proj.remove_data([-6,-5,-4,-3,-2],delete=True)
         proj[-1].source.additional_info=None
-        
+        proj.remove_data([-6,-5,-4,-3,-2],delete=True)
+        proj.save()
             
