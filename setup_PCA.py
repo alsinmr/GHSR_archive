@@ -8,12 +8,9 @@ Created on Tue Nov 22 16:18:57 2022
 
 import sys
 sys.path.append('/work/home/alsi/GitHub')
-import pyDR
 from pyDR.PCA import PCA
 import numpy as np
-from misc_functions import load_helices
 import os
-import matplotlib.py as plt
 
 
 #%% Set up pca

@@ -14,7 +14,7 @@ from pyDR.PCA import PCA
 import numpy as np
 from misc_functions import load_helices
 import os
-import matplotlib.py as plt
+import matplotlib.pyplot as plt
 
 
 #%% File locations
