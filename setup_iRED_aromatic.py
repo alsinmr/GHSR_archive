@@ -15,7 +15,7 @@ from misc_functions import helix_only
 
 
 mddir='/work/public/ghrelin-receptor'
-# mddir='/Volumes/My Book/GHSR'
+mddir='/Volumes/My Book/GHSR'
 
 topos=['WT-apo_run1_just_protein.pdb','WT-ghrelin_run1_just_protein.pdb']
 trajs=[[f'WT-apo_run{k}_0.1ns_just_protein.xtc' for k in range(1,4)],
@@ -26,9 +26,9 @@ proj=pyDR.Project('Projects/aromatic_iRED',create=True)
 resids=helix_only()[::3]
 
 for topo,traj1 in zip(topos,trajs):
-    for traj in traj1:
+    for traj in traj1[:1]:
         select=pyDR.MolSelect(topo=os.path.join(mddir,topo),
-                              traj_files=os.path.join(mddir,traj),step=1,project=proj)
+                              traj_files=os.path.join(mddir,traj),step=100,project=proj)
         
         segid='A B' if 'ghrelin' in topo else 'A'
         select_atoms=select.molsys.select_atoms
