@@ -23,3 +23,13 @@ def load_helices():
                 ar=ar[np.logical_not(np.isin(ar,np.concatenate(resids)))]
             resids.append(ar)
     return name,resids
+
+
+def helix_only(select=None):
+    names,hlx=load_helices()
+    i=np.arange(32,340)
+    i0=np.concatenate(np.array(hlx)[np.array(['L' in name or 'NT' in name for name in names],dtype=bool)])
+    i0=np.logical_not(np.isin(i,i0))
+    i=i[i0]
+    if select is None:return i
+    return np.array([s.resids[0] in i for s in select.sel1],dtype=bool)

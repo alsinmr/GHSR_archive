@@ -59,12 +59,14 @@ for topo,state in zip(topos,states):
         chimera.current=k
         pca.chimera(n=k,std=1)
         chimera.command_line(cmx_commands)
+        if state=='bound':
+            chimera.command_line(['color #1/A blue','color #2/A yellow'])
 
     "Make free energy plots"
     fig=plt.figure()
     ax=fig.add_subplot(111)
     
-    mb=120
+    mb=140
     bins=np.linspace(-mb,mb,200)
     x=(bins[1:]+bins[:-1])/2
     RT=8.314*298/1000
