@@ -1,0 +1,24 @@
+DATA
+Type:	Frames
+status:	no_opt
+short_file:	WT-ghrelin_run1_0.1ns_just_protein.xtc
+title:	n15:FRAMES:WT-ghrelin_run1_0.1ns_just_protein
+additional_info:	None
+filename:	n15_FRAMES_chunk0_WT_ghrelin_run1_0_1ns_just_protein.data
+END:DATA
+DATA
+Type:	Frames
+status:	no_opt
+short_file:	WT-ghrelin_run2_0.1ns_just_protein.xtc
+title:	n15:FRAMES:WT-ghrelin_run2_0.1ns_just_protein
+additional_info:	None
+filename:	n15_FRAMES_chunk0_WT_ghrelin_run2_0_1ns_just_protein.data
+END:DATA
+DATA
+Type:	Frames
+status:	no_opt
+short_file:	WT-ghrelin_run3_0.1ns_just_protein.xtc
+title:	n15:FRAMES:WT-ghrelin_run3_0.1ns_just_protein
+additional_info:	None
+filename:	n15_FRAMES_chunk0_WT_ghrelin_run3_0_1ns_just_protein.data
+END:DATA
