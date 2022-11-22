@@ -8,6 +8,7 @@ Created on Tue Nov 22 16:18:57 2022
 
 import sys
 sys.path.append('/work/home/alsi/GitHub')
+import pyDR
 from pyDR.PCA import PCA
 import numpy as np
 import os
