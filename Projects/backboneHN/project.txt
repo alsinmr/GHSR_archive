@@ -46,3 +46,51 @@ title:	n15:FRAMES:WT-ghrelin_run3_0.1ns_just_protein
 additional_info:	None
 filename:	n15_FRAMES_chunk0_WT_ghrelin_run3_0_1ns_just_protein.data
 END:DATA
+DATA
+Type:	Frames
+status:	no_opt
+short_file:	WT-apo_run1_0.1ns_just_protein.xtc
+title:	n15:FRAMES:AvOb:WT-apo_run1_0.1ns_just_protein
+additional_info:	AvOb
+filename:	n15_FRAMES_chunk0_WT_apo_run1_0_1ns_just_protein1.data
+END:DATA
+DATA
+Type:	Frames
+status:	no_opt
+short_file:	WT-ghrelin_run1_0.1ns_just_protein.xtc
+title:	n15:FRAMES:AvOb:WT-ghrelin_run1_0.1ns_just_protein
+additional_info:	AvOb
+filename:	n15_FRAMES_chunk0_WT_ghrelin_run1_0_1ns_just_protein1.data
+END:DATA
+DATA
+Type:	Frames
+status:	proc
+short_file:	WT-apo_run1_0.1ns_just_protein.xtc
+title:	p7:FRAMES:AvOb:WT-apo_run1_0.1ns_just_protein
+additional_info:	AvOb
+filename:	p7_FRAMES_AvOb_WT_apo_run1_0_1ns_just_protein.data
+END:DATA
+DATA
+Type:	Frames
+status:	proc
+short_file:	WT-ghrelin_run1_0.1ns_just_protein.xtc
+title:	p7:FRAMES:AvOb:WT-ghrelin_run1_0.1ns_just_protein
+additional_info:	AvOb
+filename:	p7_FRAMES_AvOb_WT_ghrelin_run1_0_1ns_just_protein.data
+END:DATA
+DATA
+Type:	Frames
+status:	opt_fit
+short_file:	WT-apo_run1_0.1ns_just_protein.xtc
+title:	o7:FRAMES:AvOb:WT-apo_run1_0.1ns_just_protein
+additional_info:	AvOb
+filename:	o7_FRAMES_AvOb_WT_apo_run1_0_1ns_just_protein.data
+END:DATA
+DATA
+Type:	Frames
+status:	opt_fit
+short_file:	WT-ghrelin_run1_0.1ns_just_protein.xtc
+title:	o7:FRAMES:AvOb:WT-ghrelin_run1_0.1ns_just_protein
+additional_info:	AvOb
+filename:	o7_FRAMES_AvOb_WT_ghrelin_run1_0_1ns_just_protein.data
+END:DATA
