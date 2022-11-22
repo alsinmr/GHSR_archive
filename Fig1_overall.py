@@ -23,7 +23,7 @@ if not(len(proj['.+AvOb'])):
     avgDataObjs(proj['.+apo'])
     avgDataObjs(proj['.+ghrelin'])
 
-if not(len(proj['opt_fit'])):
+if not(len(proj['opt_fit'])):  #Convert no-opt detectors to 7 optimized detectors
     proj['no_opt']['.+AvOb'].detect.r_auto(7)
     proj['no_opt']['.+AvOb'].fit()
     proj['proc']['.+AvOb'].opt2dist(rhoz_cleanup=True)
