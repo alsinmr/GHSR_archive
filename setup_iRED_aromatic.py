@@ -28,7 +28,7 @@ resids=helix_only()[::3]
 for topo,traj1 in zip(topos,trajs):
     for traj in traj1:
         select=pyDR.MolSelect(topo=os.path.join(mddir,topo),
-                              traj_files=os.path.join(mddir,traj),step=1,project=proj)
+                              traj_files=os.path.join(mddir,traj),step=1,project=proj,tf=355000)
         
         segid='A B' if 'ghrelin' in topo else 'A'
         select_atoms=select.molsys.select_atoms
