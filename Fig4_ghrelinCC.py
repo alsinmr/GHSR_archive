@@ -98,8 +98,32 @@ for m in range(10):
                   'show #{0}:{1}@N'.format(m+1,resids[-1]+1),
                   'show #{0}:{1}@C'.format(m+1,resids[0]-1)])
 command_line(commands)
-command_line('color #10:SERO@C3,C4,C5,C6,C7,C8 black'.format(sel.sel1[k].resid,sel.sel1[k].resid-1))
+command_line('color #10:SERO@C3,C4,C5,C6,C7,C8 black')
 
-proj.chimera.savefig('rho{0}_octanyl.png'.format(rho_index,sel.sel1[k].resid),options='transparentBackground True')
+proj.chimera.savefig(f'rho{rho_index}_octanyl.png',options='transparentBackground True')
     
     
+#%% List of interactions (text file)
+file='/Users/albertsmith/Documents/Dynamics/GHSR/Ghrelin_CC_rho5.txt'
+
+cutoff=0.4
+
+with open(file,'w') as f:
+    f.write('rho{0} (tau~{1:.1f} microseconds)\n'.format(rho_index,1e6*10**data.sens.info['z0'][rho_index]))
+    f.write('All CC with absolute value above {}\n'.format(cutoff))
+    
+    for k in range(14):
+        in0=-1 if k==13 else k
+        f.write('{0}{1}\n'.format(sel.sel1[in0].resname,sel.sel1[in0].resid))
+        i=np.argsort(np.abs(data.CCnorm[rho_index][in0]))[::-1]
+        for i0 in i:
+            if np.abs(data.CCnorm[rho_index][in0][i0])<cutoff:
+                f.write('\n')
+                break
+            elif i0==in0 or (in0==-1 and i0==308):
+                continue
+            else:
+                f.write('{0}{1}:\t{2:.2f}\n'.format(sel.sel1[i0].resname,sel.sel1[i0].resid,\
+                                                  data.CCnorm[rho_index][-1 if k==13 else k][i0]))
+        
+        

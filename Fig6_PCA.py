@@ -7,8 +7,7 @@ Created on Tue Nov 22 15:00:31 2022
 """
 
 
-import sys
-sys.path.append('/work/home/alsi/GitHub')
+
 import pyDR
 from pyDR.PCA import PCA
 import numpy as np
@@ -55,18 +54,15 @@ for topo,state in zip(topos,states):
     fig.savefig(f'PCA_results/PC1_2_{state}.pdf')       
     
     "Draw in chimera"
+    chimera=pca.project.chimera
     for k in range(2):
-        pca.project.chimera.current=k
+        chimera.current=k
         pca.chimera(n=k,std=1)
-        pca.project.chimera.command_line(cmx_commands)
+        chimera.command_line(cmx_commands)
 
     "Make free energy plots"
     fig=plt.figure()
     ax=fig.add_subplot(111)
-    
-    fig.set_size_inches([5.8,4.4])
-    fig.tight_layout()
-    fig.savefig(f'PCA_results/free_energy_{state}.pdf')
     
     mb=120
     bins=np.linspace(-mb,mb,200)
@@ -80,7 +76,11 @@ for topo,state in zip(topos,states):
     ax.set_xlabel('PCA 1')
     ax.set_ylabel(r'$\Delta$G / (kJ/mol)')
     ax.set_xlim([-mb,mb])
-    ax.set_ylim([0,25])
+    ax.set_ylim([0,35])
+    
+    fig.set_size_inches([5.8,4.4])
+    fig.tight_layout()
+    fig.savefig(f'PCA_results/free_energy_{state}.pdf')
     
         
 
