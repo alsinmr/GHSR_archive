@@ -26,7 +26,7 @@ proj=pyDR.Project('Projects/aromatic_iRED',create=True)
 resids=helix_only()[::3]
 
 for topo,traj1 in zip(topos,trajs):
-    for traj in traj1[:1]:
+    for traj in traj1:
         select=pyDR.MolSelect(topo=os.path.join(mddir,topo),
         traj_files=os.path.join(mddir,traj),step=1,project=proj,tf=355000)
         
