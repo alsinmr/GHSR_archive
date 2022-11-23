@@ -12,7 +12,7 @@ from pyDR.misc.Averaging import avgDataObjs
 
 
 #%% Finish processing
-proj=pyDR.Project('CACB')
+proj=pyDR.Project('Projects/CACB')
 
 #We'll check if the operations have already been run/saved before executing them
 
