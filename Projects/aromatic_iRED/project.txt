@@ -46,3 +46,99 @@ title:	n15:IREDMODE:rk1:WT-ghrelin_run3_0.1ns_just_protein
 additional_info:	rk1
 filename:	n15_IREDMODE_rk1_WT_ghrelin_run3_0_1ns_just_protein.data
 END:DATA
+DATA
+Type:	iREDmode
+status:	proc
+short_file:	WT-apo_run1_0.1ns_just_protein.xtc
+title:	p7:IREDMODE:rk1:WT-apo_run1_0.1ns_just_protein
+additional_info:	rk1
+filename:	p7_IREDMODE_rk1_WT_apo_run1_0_1ns_just_protein.data
+END:DATA
+DATA
+Type:	iREDmode
+status:	proc
+short_file:	WT-apo_run2_0.1ns_just_protein.xtc
+title:	p7:IREDMODE:rk1:WT-apo_run2_0.1ns_just_protein
+additional_info:	rk1
+filename:	p7_IREDMODE_rk1_WT_apo_run2_0_1ns_just_protein.data
+END:DATA
+DATA
+Type:	iREDmode
+status:	proc
+short_file:	WT-apo_run3_0.1ns_just_protein.xtc
+title:	p7:IREDMODE:rk1:WT-apo_run3_0.1ns_just_protein
+additional_info:	rk1
+filename:	p7_IREDMODE_rk1_WT_apo_run3_0_1ns_just_protein.data
+END:DATA
+DATA
+Type:	iREDmode
+status:	proc
+short_file:	WT-ghrelin_run1_0.1ns_just_protein.xtc
+title:	p7:IREDMODE:rk1:WT-ghrelin_run1_0.1ns_just_protein
+additional_info:	rk1
+filename:	p7_IREDMODE_rk1_WT_ghrelin_run1_0_1ns_just_protein.data
+END:DATA
+DATA
+Type:	iREDmode
+status:	proc
+short_file:	WT-ghrelin_run2_0.1ns_just_protein.xtc
+title:	p7:IREDMODE:rk1:WT-ghrelin_run2_0.1ns_just_protein
+additional_info:	rk1
+filename:	p7_IREDMODE_rk1_WT_ghrelin_run2_0_1ns_just_protein.data
+END:DATA
+DATA
+Type:	iREDmode
+status:	proc
+short_file:	WT-ghrelin_run3_0.1ns_just_protein.xtc
+title:	p7:IREDMODE:rk1:WT-ghrelin_run3_0.1ns_just_protein
+additional_info:	rk1
+filename:	p7_IREDMODE_rk1_WT_ghrelin_run3_0_1ns_just_protein.data
+END:DATA
+DATA
+Type:	iREDmode
+status:	opt_fit
+short_file:	WT-apo_run1_0.1ns_just_protein.xtc
+title:	o7:IREDMODE:rk1:WT-apo_run1_0.1ns_just_protein
+additional_info:	rk1
+filename:	o7_IREDMODE_rk1_WT_apo_run1_0_1ns_just_protein.data
+END:DATA
+DATA
+Type:	iREDmode
+status:	opt_fit
+short_file:	WT-apo_run2_0.1ns_just_protein.xtc
+title:	o7:IREDMODE:rk1:WT-apo_run2_0.1ns_just_protein
+additional_info:	rk1
+filename:	o7_IREDMODE_rk1_WT_apo_run2_0_1ns_just_protein.data
+END:DATA
+DATA
+Type:	iREDmode
+status:	opt_fit
+short_file:	WT-apo_run3_0.1ns_just_protein.xtc
+title:	o7:IREDMODE:rk1:WT-apo_run3_0.1ns_just_protein
+additional_info:	rk1
+filename:	o7_IREDMODE_rk1_WT_apo_run3_0_1ns_just_protein.data
+END:DATA
+DATA
+Type:	iREDmode
+status:	opt_fit
+short_file:	WT-ghrelin_run1_0.1ns_just_protein.xtc
+title:	o7:IREDMODE:rk1:WT-ghrelin_run1_0.1ns_just_protein
+additional_info:	rk1
+filename:	o7_IREDMODE_rk1_WT_ghrelin_run1_0_1ns_just_protein.data
+END:DATA
+DATA
+Type:	iREDmode
+status:	opt_fit
+short_file:	WT-ghrelin_run2_0.1ns_just_protein.xtc
+title:	o7:IREDMODE:rk1:WT-ghrelin_run2_0.1ns_just_protein
+additional_info:	rk1
+filename:	o7_IREDMODE_rk1_WT_ghrelin_run2_0_1ns_just_protein.data
+END:DATA
+DATA
+Type:	iREDmode
+status:	opt_fit
+short_file:	WT-ghrelin_run3_0.1ns_just_protein.xtc
+title:	o7:IREDMODE:rk1:WT-ghrelin_run3_0.1ns_just_protein
+additional_info:	rk1
+filename:	o7_IREDMODE_rk1_WT_ghrelin_run3_0_1ns_just_protein.data
+END:DATA
