@@ -34,8 +34,8 @@ trajs=[[f'WT-apo_run{k}_0.1ns_just_protein.xtc' for k in range(1,4)],
 
 _,hlx=load_helices()  #Use helices for alignment
 
-for topo,traj1 in zip(topos[:1],trajs[:1]):
-    for traj in traj1[1:]:
+for topo,traj1 in zip(topos,trajs):
+    for traj in traj1:
         sel=pyDR.MolSelect(topo=os.path.join(mddir,topo),
                            traj_files=os.path.join(mddir,traj),
                            step=1,project=proj,tf=355000)
@@ -49,7 +49,7 @@ for topo,traj1 in zip(topos[:1],trajs[:1]):
             fr_sel=sel.molsys.select_filter(resids=np.concatenate(hlx),filter_str='name CA')
             frames.new_frame(Type='superimpose',sel=fr_sel)  #Remove overall motion
             
-            frames.frames2data()
+            frames.frames2data(mode='sym')
             
             proj.remove_data([-4,-3,-1],delete=True)
             proj[-1].source.additional_info=f'chunk{k}'
