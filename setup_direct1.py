@@ -33,9 +33,9 @@ trajs=[[f'WT-apo_run{k}_0.1ns_just_protein.xtc' for k in range(1,4)],
        [f'WT-ghrelin_run{k}_0.1ns_just_protein.xtc' for k in range(1,4)]]
 
 
-for topo,traj1 in zip(topos[:1],trajs[:1]):
-    for traj in traj1:
-        for t0,tf in zip([0,177500],[177500,355000]):
+for topo,traj1 in zip(topos[1:],trajs[1:]):
+    for traj in traj1[1:2]:
+        for t0,tf in zip([0,177500][1:],[177500,355000][1:]):
             sel=pyDR.MolSelect(topo=os.path.join(mddir,topo),
                                traj_files=os.path.join(mddir,traj),
                                step=1,project=proj,t0=t0,tf=tf)
