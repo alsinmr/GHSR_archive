@@ -13,7 +13,7 @@ import subprocess
 
 #%% Load trajectories and save truncated trajectory
 mddir='/work/public/ghrelin-receptor'
-mddir='/Volumes/My Book/GHSR'
+#mddir='/Volumes/My Book/GHSR'
 
 topos=['WT-apo_run1_just_protein.pdb','WT-ghrelin_run1_just_protein.pdb']
 trajs=[[f'WT-apo_run{k}_0.1ns_just_protein.xtc' for k in range(1,4)],
