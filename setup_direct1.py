@@ -51,7 +51,7 @@ for topo,traj1 in zip(topos[:1],trajs[:1]):
             fr_sel=sel.molsys.select_filter(resids=np.concatenate(hlx),filter_str='name CA')
             frames.new_frame(Type='superimpose',sel=fr_sel)  #Remove overall motion
             
-            frames.frames2data()
+            frames.frames2data(mode='sym')
                 
             proj.remove_data([-4,-3,-1],delete=True)
             proj[-1].detect.r_no_opt(15)

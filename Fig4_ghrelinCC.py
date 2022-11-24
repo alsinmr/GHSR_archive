@@ -9,7 +9,6 @@ Created on Tue Nov 22 16:40:17 2022
 import pyDR
 import numpy as np
 import matplotlib.pyplot as plt
-from misc_functions import load_helices
 from pyDR.misc.Averaging import avgDataObjs
 
 proj=pyDR.Project('Projects/ghrelin_iRED')

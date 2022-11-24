@@ -11,6 +11,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pyDR.misc.Averaging import avgDataObjs
 from copy import copy
+import os
 
 proj=pyDR.Project('Projects/aromatic_iRED')
 
@@ -69,14 +70,64 @@ for k,a in enumerate(ax):
     for m,(i0,i,s,h) in enumerate(zip(index0,index,sub,hatch)):
         x=np.arange(sum(i))+w/2*(-1)**(m+1)
         a.bar(x,np.abs(s.CCnorm[k][i0][i]),w,color=cmap(k),hatch=h)
+        a.set_ylim([0,0.6])
+        a.set_ylabel(r'$\rho_n^{CC}$')
+        a.set_yticks(np.linspace(0,.6,4))
+        
     a.set_xticks(np.arange(sum(i)))
-    a.set_ylim([0,0.6])
-    a.set_ylabel(r'$\rho_n^{CC}$')
-    a.set_yticks(np.linspace(0,.8,5))
+
     if a.is_last_row():
         a.set_xticklabels([str(sel[0].resid)+AA[sel[0].resname].symbol for sel in s.select.sel1[i]],rotation=90)
     else:
         a.set_xticklabels([])
+
+#%% Make Ring current shift plot
+
+rc_apo=list()
+rc_ghrelin=list()
+for file,rc in zip(['rc_apo','rc_ghrelin'],[rc_apo,rc_ghrelin]):
+    with open(os.path.join('SPARTA',file+'.txt'),'r') as f:
+        resids=np.array([int(res) for res in f.readline().strip().split()])
+        for line in f:
+            rc.append([float(x) for x in line.strip().split()])
+
+rc_apo,rc_ghrelin=[np.array(rc) for rc in [rc_apo,rc_ghrelin]]
+
+w=0.4
+ax=plt.figure().add_subplot(111)
+ax.bar(np.arange(len(resids))-w/2,rc_apo.mean(0),width=w,color='grey',edgecolor='black')
+ax.bar(np.arange(len(resids))+w/2,rc_ghrelin.mean(0),width=w,color='darkgrey',edgecolor='black')
+ax.set_xticks(range(len(resids)))
+ax.set_xticklabels(resids)
+ax.set_ylabel(r'Ring current $\delta(C\alpha)$')
+ax.set_xlabel('Residue')
+
+print('Resids (sorted from largest to smallest change in ring current effect)')
+print(resids[np.argsort(np.abs(rc_apo.mean(0)-rc_ghrelin.mean(0)))][::-1])
+
+#%% Make CS plot (not shown in text)
+
+cs_apo=list()
+cs_ghrelin=list()
+for file,cs in zip(['shift_apo','shift_ghrelin'],[cs_apo,cs_ghrelin]):
+    with open(os.path.join('SPARTA',file+'.txt'),'r') as f:
+        resids=np.array([int(res) for res in f.readline().strip().split()])
+        for line in f:
+            cs.append([float(x) for x in line.strip().split()])
+
+cs_apo,cs_ghrelin=[np.array(cs) for cs in [cs_apo,cs_ghrelin]]
+
+w=0.4
+ax=plt.figure().add_subplot(111)
+ax.bar(np.arange(len(resids))-w/2,cs_apo.mean(0),width=w,color='grey',edgecolor='black')
+ax.bar(np.arange(len(resids))+w/2,cs_ghrelin.mean(0),width=w,color='darkgrey',edgecolor='black')
+ax.set_xticks(range(len(resids)))
+ax.set_xticklabels(resids)
+ax.set_ylabel(r'Pred. Chemical Shift $\delta(C\alpha)$')
+ax.set_xlabel('Residue')
+ax.set_ylim([58,63])
+print('Resids (sorted from largest to smallest change in overall chemical shift')
+print(resids[np.argsort(np.abs(cs_apo.mean(0)-cs_ghrelin.mean(0)))][::-1])
 
 #%% Make chimera plots
 res1=[*resids,276]
@@ -86,10 +137,10 @@ for s,i in zip(sel,index):
     for k in ['repr_sel','sel1','sel2']:
         setattr(s,k,[x for x in getattr(s,k)[i]])
 
-cmx_cmds=['~show','ribbon','~ribbon #2/A','show :'+','.join([str(r) for r in res1]),
-          'view','turn x -90','turn y -75','turn x -15','align #1@CA toAtoms #2/B@CA',
+cmx_cmds=['~show','ribbon','show :'+','.join([str(r) for r in res1]),
+          'view','turn x -90','turn z -5','turn x 5','align #2/B@CA toAtoms #1@CA',
           'color light steel blue target r','move x 50 models #2','zoom 1.2',
-          'lighting full','graphics silhouettes True','color :276 30,30,30']
+          'lighting full','graphics silhouettes True','color :276 30,30,30','view','zoom 1.15']
 
 for k in range(6):
     sub.chimera.close()
