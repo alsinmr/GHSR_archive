@@ -37,7 +37,10 @@ for state in ['apo','ghrelin']:
     for k in range(2):
         plot+=1
         proj.current_plot=plot
-        proj['opt_fit']['.+'+state][k::2].plot()
+        if state=='ghrelin' and k==1:
+            proj['opt_fit']['.+'+state][[1,5]].plot()
+        else:
+            proj['opt_fit']['.+'+state][k::2].plot()
         proj.plot_obj.show_tc()
         title=f'{state.capitalize()}, '+('second' if k else 'first')+' half'
         proj.plot_obj.ax_sens.set_title(title)
