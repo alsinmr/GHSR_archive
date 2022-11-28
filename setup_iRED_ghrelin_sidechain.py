@@ -29,7 +29,7 @@ def load_helices():
 
 
 #%% File locations
-proj=pyDR.Project('Projects/ghrelin_iRED',create=True)
+proj=pyDR.Project('Projects/ghrelin_iRED_sidechain',create=True)
 
 
 mddir='/work/public/ghrelin-receptor'
@@ -45,11 +45,15 @@ for traj in trajs:
                        traj_files=os.path.join(mddir,traj),step=1,tf=355000,project=proj)
     
     sel=pyDR.MolSelect(molsys)
-    sel.select_bond(Nuc='N')
+    sel.select_bond(Nuc='sidechain')
     sel0=sel.molsys.select_atoms('resname SERO and name C3 C8')
     sel._mdmode=True
     sel.sel1+=sel0[0]
     sel.sel2+=sel0[1]
+    sel.repr_sel=[s.residue.atoms for s in sel.sel1]
+    sel.repr_sel[-1]=sel.repr_sel[-1][18:]
+    sel.repr_sel[2]=sel.repr_sel[2][:18]
+    
     
     frames=pyDR.Frames.FrameObj(sel)
     "Tensor frame"
