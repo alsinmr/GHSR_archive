@@ -55,14 +55,13 @@ for k in range(7):
     
     proj.chimera.savefig('HIS186_apo_rho{0}.png'.format(k),options='transparentBackground True')
     
-    proj.chimera.command_line(['~show #1','show #2@N,C,CA,CB','clip off','clip far 10'])
+    proj.chimera.command_line(['~show #1','show #2@N,C,CA,CB','clip off','clip far 10','color #2/A slate grey'])
     proj.chimera.savefig('HIS186_bound_rho{0}.png'.format(k),options='transparentBackground True')
 
     
 #%% Part B: Zoom in on helices 4-7
 
 r=ranges[1]
-sc=scaling[1]
 sc=2
 r0=[207,256]
 rho_index=5
@@ -84,6 +83,6 @@ proj.chimera.savefig(f'Hlx5to7_apo_rho{rho_index}.png',options='transparentBackg
 proj.chimera.command_line(['~show','~ribbon','sel #2'+sel_str+'@N,C,CA,CB',
                            'ribbon #2','~ribbon sel','show sel',
                            'color #2&~sel light steel blue','~sel','view #2','clip off',
-                           'zoom 1.3','turn y -10'])
+                           'zoom 1.3','turn y -10','color #2/A slate grey'])
 proj.chimera.savefig(f'Hlx5to7_bound_rho{rho_index}.png',options='transparentBackground True')
     
