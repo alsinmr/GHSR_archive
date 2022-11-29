@@ -99,6 +99,7 @@ proj.chimera.savefig(f'rho{rho_index}_octanyl.png',options='transparentBackgroun
     
     
 #%% Interactions with correlation over 0.5
+#(SI figure 1)
 
 ter=[np.arange(33,41)]
 icl=[np.arange(71,78),np.arange(146,158),np.arange(238,253),]
