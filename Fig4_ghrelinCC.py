@@ -22,13 +22,10 @@ if not(len(proj['opt_fit'])):
 proj['opt_fit'].modes2bonds()
 avgDataObjs(proj['iREDbond'])
 
-data=proj['iREDbond']['.+AvOb'][0]
 
 
 #%% Plot the results in chimeraX
-
-proj['opt_fit']['.+rk1_.+ghrelin'].modes2bonds()
-data=proj['iREDbond'][0]
+data=proj['iREDbond'][-1]
 
 
 
@@ -38,7 +35,6 @@ rho_index=5
 
 hlx=[np.arange(41,71),np.arange(78,106),np.arange(114,146),np.arange(158,182),
      np.arange(209,238),np.arange(253,290),np.arange(296,327),np.arange(327,340)]
-
 
 sel=data.select
 #Fix representative selection
@@ -102,27 +98,40 @@ command_line('color #10:SERO@C3,C4,C5,C6,C7,C8 black')
 proj.chimera.savefig(f'rho{rho_index}_octanyl.png',options='transparentBackground True')
     
     
-#%% List of interactions (text file)
-file='/Users/albertsmith/Documents/Dynamics/GHSR/Ghrelin_CC_rho5.txt'
+#%% Interactions with correlation over 0.5
+#(SI figure 1)
 
-cutoff=0.4
+ter=[np.arange(33,41)]
+icl=[np.arange(71,78),np.arange(146,158),np.arange(238,253),]
+ecl=[np.arange(107,114),np.arange(182,209),np.arange(290,296)]
 
-with open(file,'w') as f:
-    f.write('rho{0} (tau~{1:.1f} microseconds)\n'.format(rho_index,1e6*10**data.sens.info['z0'][rho_index]))
-    f.write('All CC with absolute value above {}\n'.format(cutoff))
+groups=[ter[0],hlx[0],icl[0],hlx[1],ecl[0],hlx[2],icl[1],hlx[3],ecl[1],hlx[4],
+        icl[2],hlx[5],ecl[2],hlx[6],hlx[7]]
+names=['N-term','TM1','ICL1','TM2','ECL1','TM3','ICL2','TM4','ECL2','TM5','ICL3','TM6','ECL3','TM7','H8']
+
+
+resids=[int(lbl.split('_')[0]) for lbl in data.label]
+
+cutoff=0.5
+
+count1to7=list()
+count9to15=list()
+for g in groups:
+    index=np.isin(resids,g)
+    count1to7.append((np.abs(data.CCnorm[-2][:6][:,index])>cutoff).sum())
+    count9to15.append((np.abs(data.CCnorm[-2][6:13][:,index])>cutoff).sum())
+
+fig=plt.figure()
+ax=[fig.add_subplot(2,1,k+1) for k in range(2)]
+
+for a,count in zip(ax,[count1to7,count9to15]):
+    a.bar(range(len(count)),count)
+    a.set_ylim([0,25])
+    a.set_xticks(range(len(count)))
+    a.set_xticklabels(names,rotation=90)
+    a.set_ylabel('count')
+
+a[0].set_xticklabels([])
     
-    for k in range(14):
-        in0=-1 if k==13 else k
-        f.write('{0}{1}\n'.format(sel.sel1[in0].resname,sel.sel1[in0].resid))
-        i=np.argsort(np.abs(data.CCnorm[rho_index][in0]))[::-1]
-        for i0 in i:
-            if np.abs(data.CCnorm[rho_index][in0][i0])<cutoff:
-                f.write('\n')
-                break
-            elif i0==in0 or (in0==-1 and i0==308):
-                continue
-            else:
-                f.write('{0}{1}:\t{2:.2f}\n'.format(sel.sel1[i0].resname,sel.sel1[i0].resid,\
-                                                  data.CCnorm[rho_index][-1 if k==13 else k][i0]))
         
         
