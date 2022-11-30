@@ -42,18 +42,18 @@ for topo,traj1 in zip(topos,trajs):
         
 
 #%% Run commands on NMRbox
-cmd='mkdir /home/nmrbox/asmith/Desktop/shiftx_pdbs'
-run(f'echo "{cmd}" | ssh {user}@{host}',shell=True)   #Create directory remotely
+if False:
+    cmd='mkdir /home/nmrbox/asmith/Desktop/shiftx_pdbs'
+    run(f'echo "{cmd}" | ssh {user}@{host}',shell=True)   #Create directory remotely
 
-cmd=f"""scp {working_dir}/*.pdb {user}@{host}:/home/nmrbox/asmith/Desktop/shiftx_pdbs"""
-run(cmd,shell=True)   #Copy the pdbs there
+    cmd=f"""scp {working_dir}/*.pdb {user}@{host}:/home/nmrbox/asmith/Desktop/shiftx_pdbs"""
+    run(cmd,shell=True)   #Copy the pdbs there
 
-cmd=f"""echo "python2 /usr/software/SHIFTX2/shiftx2.py -b /home/nmrbox/asmith/Desktop/shiftx_pdbs/'*'.pdb" | ssh {user}@{host}"""
-run(cmd,shell=True)  #Run shiftx on all pdbs
+    cmd=f"""echo "python2 /usr/software/SHIFTX2/shiftx2.py -b /home/nmrbox/asmith/Desktop/shiftx_pdbs/'*'.pdb" | ssh {user}@{host}"""
+    run(cmd,shell=True)  #Run shiftx on all pdbs
 
-os.mkdir('cs')
-cmd=f"""scp {user}@{host}:/home/nmrbox/asmith/Desktop/shiftx_pdbs/*.cs  {working_dir}/"""
-run(cmd,shell=True)
+    cmd=f"""scp {user}@{host}:/home/nmrbox/asmith/Desktop/shiftx_pdbs/*.cs  {working_dir}/"""
+    run(cmd,shell=True)
 
 
 #%% Collect the results
@@ -75,3 +75,5 @@ def collect(title='apo_run1'):
             for k,v in dct.items():
                 f.write(k+'\t'+'\t'.join(v)+'\n')
             
+for title in ['apo_run1','apo_run2','apo_run3','ghrelin_run1','ghrelin_run2','ghrelin_run3']:
+    collect(title)
