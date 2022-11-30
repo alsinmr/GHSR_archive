@@ -64,7 +64,7 @@ def collect(title='apo_run1'):
         if title in file:
             with open(os.path.join(working_dir,file),'r') as f:
                 for line in f:
-                    resid,*_,atomname,shift=line.strip.split(',')
+                    resid,*_,atomname,shift=line.strip().split(',')
                     if atomname in shifts:
                         dct=shifts[atomname]  #Get the right dictionary
                         if resid not in dct:dct[resid]=[]  #Add the residue if missing
