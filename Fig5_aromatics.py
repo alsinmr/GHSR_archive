@@ -81,53 +81,41 @@ for k,a in enumerate(ax):
     else:
         a.set_xticklabels([])
 
-#%% Make Ring current shift plot
-
-rc_apo=list()
-rc_ghrelin=list()
-for file,rc in zip(['rc_apo','rc_ghrelin'],[rc_apo,rc_ghrelin]):
-    with open(os.path.join('SPARTA',file+'.txt'),'r') as f:
-        resids=np.array([int(res) for res in f.readline().strip().split()])
+#%% Plot Chemical Shift prediction from SHIFTX2
+def load_file(filename='SHIFTX2/apo_run1_CA.txt'):
+    out={}
+    with open(filename,'r') as f:
         for line in f:
-            rc.append([float(x) for x in line.strip().split()])
+            resid,*shifts=line.strip().split('\t')
+            out[int(resid)]=np.array(shifts)
+    return out
 
-rc_apo,rc_ghrelin=[np.array(rc) for rc in [rc_apo,rc_ghrelin]]
+apoCA=np.zeros([len(resids),3,710])
+for k in range(3):
+    out=load_file('SHIFTX2/apo_run{k+1}_CA.txt')
+    for m,resid in enumerate(resids):
+        apoCA[m,k]=out[resid]
+        
+boundCA=np.zeros([len(resids),3,710])
+for k in range(3):
+    out=load_file('SHIFTX2/bound_run{k+1}_CA.txt')
+    for m,resid in enumerate(resids):
+        apoCA[m,k]=out[resid]
+        
 
 w=0.4
 ax=plt.figure().add_subplot(111)
-ax.bar(np.arange(len(resids))-w/2,rc_apo.mean(0),width=w,color='grey',edgecolor='black')
-ax.bar(np.arange(len(resids))+w/2,rc_ghrelin.mean(0),width=w,color='darkgrey',edgecolor='black')
+shift=apoCA.reshape([len(resids),3*710])
+ax.bar(np.arange(len(resids))-w/2,shift.mean(1),color='grey',edgecolor='black')
+ax.errorbar(np.arange(len(resids))-w/2,shift.mean(1),shift.std(1),color='black',capsize=4)        
+shift=boundCA.reshape([len(resids),3*710])
+ax.bar(np.arange(len(resids))+w/2,shift.mean(1),color='darkgrey',edgecolor='black')
+ax.errorbar(np.arange(len(resids))+w/2,shift.mean(1),shift.std(1),color='black',capsize=4)
 ax.set_xticks(range(len(resids)))
-ax.set_xticklabels(resids)
-ax.set_ylabel(r'Ring current $\delta(C\alpha)$')
-ax.set_xlabel('Residue')
+ax.set_xticklabels(resids,rotation=90)
+ax.set_ylabel(r'$\delta^{C\alpha}$ / ppm')
+ax.set_ylim([40,70])
 
-print('Resids (sorted from largest to smallest change in ring current effect)')
-print(resids[np.argsort(np.abs(rc_apo.mean(0)-rc_ghrelin.mean(0)))][::-1])
-
-#%% Make CS plot (not shown in text)
-
-cs_apo=list()
-cs_ghrelin=list()
-for file,cs in zip(['shift_apo','shift_ghrelin'],[cs_apo,cs_ghrelin]):
-    with open(os.path.join('SPARTA',file+'.txt'),'r') as f:
-        resids=np.array([int(res) for res in f.readline().strip().split()])
-        for line in f:
-            cs.append([float(x) for x in line.strip().split()])
-
-cs_apo,cs_ghrelin=[np.array(cs) for cs in [cs_apo,cs_ghrelin]]
-
-w=0.4
-ax=plt.figure().add_subplot(111)
-ax.bar(np.arange(len(resids))-w/2,cs_apo.mean(0),width=w,color='grey',edgecolor='black')
-ax.bar(np.arange(len(resids))+w/2,cs_ghrelin.mean(0),width=w,color='darkgrey',edgecolor='black')
-ax.set_xticks(range(len(resids)))
-ax.set_xticklabels(resids)
-ax.set_ylabel(r'Pred. Chemical Shift $\delta(C\alpha)$')
-ax.set_xlabel('Residue')
-ax.set_ylim([58,63])
-print('Resids (sorted from largest to smallest change in overall chemical shift')
-print(resids[np.argsort(np.abs(cs_apo.mean(0)-cs_ghrelin.mean(0)))][::-1])
 
 #%% Make chimera plots
 res1=[*resids,276]

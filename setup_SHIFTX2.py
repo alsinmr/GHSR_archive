@@ -25,17 +25,20 @@ if not(os.path.exists('SHIFTX2')):os.mkdir('SHIFTX2')
 
 for topo,traj1 in zip(topos,trajs):
     for traj in traj1:
-        print(traj)
-        uni=mda.Universe(os.path.join(mddir,topo),os.path.join(mddir,traj))
-        
-        sel=uni.atoms if 'apo' in topo else uni.atoms.select_atoms('segid B')
-        i=sel.residues.resnames=='HSD'
-        sel.residues[i].resnames='HIS'  #Required for shiftX2
-        
         title=traj.split('-')[1].rsplit('_',maxsplit=3)[0]+'_{}.pdb'
         
-        for _ in uni.trajectory[:355000:500]: #Sample every 50 ns
-            sel.write(os.path.join(working_dir,title.format(uni.trajectory.frame)))
+        if not(os.path.exists(os.path.join(working_dir,title.format(354500)))):
+            print(traj)
+            uni=mda.Universe(os.path.join(mddir,topo),os.path.join(mddir,traj))
+            
+            sel=uni.atoms if 'apo' in topo else uni.atoms.select_atoms('segid B')
+            i=sel.residues.resnames=='HSD'
+            sel.residues[i].resnames='HIS'  #Required for shiftX2
+            
+            
+            
+            for _ in uni.trajectory[:355000:500]: #Sample every 50 ns
+                sel.write(os.path.join(working_dir,title.format(uni.trajectory.frame)))
         
 
 #%% Run commands on NMRbox
@@ -61,6 +64,14 @@ def collect(title='apo_run1'):
         if title in file:
             with open(os.path.join(working_dir,file),'r') as f:
                 for line in f:
-                    resid,resname,atomname,shift=line.strip.split(',')
+                    resid,*_,atomname,shift=line.strip.split(',')
                     if atomname in shifts:
-                        pass
+                        dct=shifts[atomname]  #Get the right dictionary
+                        if resid not in dct:dct[resid]=[]  #Add the residue if missing
+                        dct[resid].append(shift)  #Append shift to that residue
+            
+    for key,dct in shifts.items():
+        with open(os.path.join(working_dir,title+'_'+key+'.txt'),'w') as f:  #New file for each atom type
+            for k,v in dct.items():
+                f.write(k+'\t'+'\t'.join(v)+'\n')
+            

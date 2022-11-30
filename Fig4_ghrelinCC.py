@@ -128,7 +128,7 @@ ax=[fig.add_subplot(2,1,k+1) for k in range(2)]
 
 for a,count in zip(ax,[count1to7,count9to15]):
     a.bar(range(len(count)),count,edgecolor='black',width=.6)
-    a.set_ylim([0,25])
+    a.set_ylim([0,max(count1to7)+1])
     a.set_xticks(range(len(count)))
     a.set_xticklabels(names,rotation=90)
     a.set_ylabel('Count')
