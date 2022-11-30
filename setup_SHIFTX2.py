@@ -32,7 +32,7 @@ for topo,traj1 in zip(topos,trajs):
         i=sel.residues.resnames=='HSD'
         sel.residues[i].resnames='HIS'  #Required for shiftX2
         
-        title=topo.split('-')[1].rsplit('_',maxsplit=2)[0]+'_{}.pdb'
+        title=traj.split('-')[1].rsplit('_',maxsplit=3)[0]+'_{}.pdb'
         
         for _ in uni.trajectory[:355000:500]: #Sample every 50 ns
             sel.write(os.path.join(working_dir,title.format(uni.trajectory.frame)))
@@ -51,3 +51,16 @@ run(cmd,shell=True)  #Run shiftx on all pdbs
 os.mkdir('cs')
 cmd=f"""scp {user}@{host}:/home/nmrbox/asmith/Desktop/shiftx_pdbs/*.cs  {working_dir}/"""
 run(cmd,shell=True)
+
+
+#%% Collect the results
+def collect(title='apo_run1'):
+    shifts={'CA':{},'CB':{},'C':{}}
+
+    for file in os.listdir(working_dir):
+        if title in file:
+            with open(os.path.join(working_dir,file),'r') as f:
+                for line in f:
+                    resid,resname,atomname,shift=line.strip.split(',')
+                    if atomname in shifts:
+                        pass
