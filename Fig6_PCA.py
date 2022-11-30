@@ -33,13 +33,15 @@ hlx_sel='setattr :'+','.join(str(int(i)) for i in \
         
 cmx_commands=['lighting soft','graphics silhouettes true',hlx_sel,'ribbon']
 
+proj=pyDR.Project('Projects/PCA',create=True)
+
 for topo,state in zip(topos,states):
     """
     Note that the pyDR PCA module is not fully set up for export, so this is
     a little hack-y. We have saved parts of the analysis on a server and
     reload them into the hidden variables in pca to restore functionality.
     """
-    pca=PCA(pyDR.MolSelect(topo=os.path.join(mddir,topo))).select_atoms('name N C CA')
+    pca=PCA(pyDR.MolSelect(topo=os.path.join(mddir,topo),project=proj)).select_atoms('name N C CA')
     with open(os.path.join('PCA_results',f'{state}_covar.dat'),'rb') as f:
         pca._covar=np.load(f,allow_pickle=False)
     with open(os.path.join('PCA_results',f'{state}_pcamp.data'),'rb') as f:
@@ -50,21 +52,14 @@ for topo,state in zip(topos,states):
     i=np.argsort(w)[::-1]
     pca._lambda,pca._PC=w[i],v[:,i]
 
-    "Plot the 1st and 2nd components of the PCA"
-    fig=plt.figure()
-    ax=fig.add_subplot(111)
-    hdl=pca.plot(n0=0,n1=1,maxbin=120,cmap='nipy_spectral',nbins=100,ax=ax)
-    ax.set_xlabel('PC 0')
-    ax.set_ylabel('PC 1')
-    hdl1=plt.colorbar(hdl[-1],ax=ax)
-    hdl1.set_label('count')
-    fig.set_size_inches([5.8,4.4])
-    fig.tight_layout()
-    fig.savefig(f'PCA_results/PC1_2_{state}.pdf')       
-    
-    
+    "Plot the 0th-3rd components of the PCA"
+    #This creates an interactive plot, from which Figure 6 was generated      
     pca.project.chimera.saved_commands=cmx_commands
-    pca.hist2struct(nmax=3,maxbin=120,cmap='nipy_spectral',nbins=100)
+    fig=pca.hist2struct(nmax=3,maxbin=120,cmap='nipy_spectral',nbins=100,ref_struct=False)
+    fig.set_size_inches([9,8])
+    fig.tight_layout()
+    
+    #Use proj.chimera.savefig(filename) to save views in chimera to the project folder
     
     # "Draw in chimera"
     # chimera=pca.project.chimera
