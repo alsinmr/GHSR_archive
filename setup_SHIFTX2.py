@@ -63,12 +63,15 @@ def collect(title='apo_run1'):
     for file in os.listdir(working_dir):
         if title in file:
             with open(os.path.join(working_dir,file),'r') as f:
+                _=f.readline()
                 for line in f:
-                    resid,*_,atomname,shift=line.strip().split(',')
-                    if atomname in shifts:
-                        dct=shifts[atomname]  #Get the right dictionary
-                        if resid not in dct:dct[resid]=[]  #Add the residue if missing
-                        dct[resid].append(shift)  #Append shift to that residue
+                    x=line.strip().split(',')
+                    if len(x)==4:
+                        resid,symbol,atomname,shift=x
+                        if atomname in shifts:
+                            dct=shifts[atomname]  #Get the right dictionary
+                            if resid not in dct:dct[resid]=[]  #Add the residue if missing
+                            dct[resid].append(shift)  #Append shift to that residue
             
     for key,dct in shifts.items():
         with open(os.path.join(working_dir,title+'_'+key+'.txt'),'w') as f:  #New file for each atom type
