@@ -14,11 +14,6 @@ import MDAnalysis as mda
 user='asmith'
 host='calcium.nmrbox.org'
 
-os.chdir('/Users/albertsmith/Documents/Dynamics/GHSR/SHIFTX2')
-
-if not(os.path.exists('pdbs')):os.mkdir('pdbs')
-
-
 #%% Create pdbs
 topos=['WT-apo_run1_just_protein.pdb','WT-ghrelin_run1_just_protein.pdb']
 trajs=[[f'WT-apo_run{k}_0.1ns_just_protein.xtc' for k in range(1,4)],
@@ -30,6 +25,7 @@ if not(os.path.exists('SHIFTX2')):os.mkdir('SHIFTX2')
 
 for topo,traj1 in zip(topos,trajs):
     for traj in traj1:
+        print(traj)
         uni=mda.Universe(os.path.join(mddir,topo),os.path.join(mddir,traj))
         
         sel=uni.atoms if 'apo' in topo else uni.atoms.select_atoms('segid B')
