@@ -114,7 +114,7 @@ names=['N-term','TM1','ICL1','TM2','ECL1','TM3','ICL2','TM4','ECL2','TM5','ICL3'
 
 resids=[int(lbl.split('_')[0]) for lbl in data.label]
 
-cutoff=0.5
+cutoff=0.35
 
 count1to7=list()
 count9to15=list()

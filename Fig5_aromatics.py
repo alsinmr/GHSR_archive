@@ -87,34 +87,35 @@ def load_file(filename='SHIFTX2/apo_run1_CA.txt'):
     with open(filename,'r') as f:
         for line in f:
             resid,*shifts=line.strip().split('\t')
-            out[int(resid)]=np.array(shifts)
+            out[int(resid)]=np.array(shifts).astype(float)
     return out
 
 apoCA=np.zeros([len(resids),3,710])
 for k in range(3):
-    out=load_file('SHIFTX2/apo_run{k+1}_CA.txt')
+    out=load_file(f'SHIFTX2/apo_run{k+1}_CA.txt')
     for m,resid in enumerate(resids):
         apoCA[m,k]=out[resid]
         
 boundCA=np.zeros([len(resids),3,710])
 for k in range(3):
-    out=load_file('SHIFTX2/bound_run{k+1}_CA.txt')
+    out=load_file(f'SHIFTX2/ghrelin_run{k+1}_CA.txt')
     for m,resid in enumerate(resids):
-        apoCA[m,k]=out[resid]
+        boundCA[m,k]=out[resid]
         
 
 w=0.4
 ax=plt.figure().add_subplot(111)
 shift=apoCA.reshape([len(resids),3*710])
-ax.bar(np.arange(len(resids))-w/2,shift.mean(1),color='grey',edgecolor='black')
-ax.errorbar(np.arange(len(resids))-w/2,shift.mean(1),shift.std(1),color='black',capsize=4)        
+ax.bar(np.arange(len(resids))-w/2,shift.mean(1),color='grey',edgecolor='black',width=w)
+# ax.errorbar(np.arange(len(resids))-w/2,shift.mean(1),shift.std(1),color='black',capsize=4,linestyle='')        
+ax.errorbar(np.arange(len(resids))-w/2,shift.mean(1),apoCA.mean(-1).std(1),color='black',capsize=4,linestyle='')        
 shift=boundCA.reshape([len(resids),3*710])
-ax.bar(np.arange(len(resids))+w/2,shift.mean(1),color='darkgrey',edgecolor='black')
-ax.errorbar(np.arange(len(resids))+w/2,shift.mean(1),shift.std(1),color='black',capsize=4)
+ax.bar(np.arange(len(resids))+w/2,shift.mean(1),color='darkgrey',edgecolor='black',width=w)
+ax.errorbar(np.arange(len(resids))+w/2,shift.mean(1),boundCA.mean(-1).std(1),color='black',capsize=4,linestyle='')
 ax.set_xticks(range(len(resids)))
 ax.set_xticklabels(resids,rotation=90)
 ax.set_ylabel(r'$\delta^{C\alpha}$ / ppm')
-ax.set_ylim([40,70])
+ax.set_ylim([56.5,62.5])
 
 
 #%% Make chimera plots

@@ -40,8 +40,13 @@ for topo,traj1,state in zip(topos,trajs,states):
     pca=PCA(pyDR.MolSelect(topo=os.path.join(mddir,topo),\
               traj_files=[os.path.join(mddir,traj) for traj in traj1],step=1)).\
               select_atoms('name N C CA')
-    with open(os.path.join('PCA_results',f'{state}_covar.dat'),'wb') as f:
+    pca.runPCA(n=10)
+    with open(os.path.join('PCA_results',f'{state}_covar.data'),'wb') as f:
         np.save(f,pca.CoVar,allow_pickle=False)
+    with open(os.path.join('PCA_results',f'{state}_Lambda.data'),'wb') as f:
+        np.save(f,pca.Lambda,allow_pickle=False)
+    with open(os.path.join('PCA_results',f'{state}_PC.data'),'wb') as f:
+        np.save(f,pca.PC,allow_pickle=False)
     with open(os.path.join('PCA_results',f'{state}_pcamp.data'),'wb') as f:
         np.save(f,pca.PCamp,allow_pickle=False)
     with open(os.path.join('PCA_results',f'{state}_mean.data'),'wb') as f:
