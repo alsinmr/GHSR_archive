@@ -45,15 +45,21 @@ for topo,state in zip(topos,states):
     reload them into the hidden variables in pca to restore functionality.
     """
     pca=PCA(pyDR.MolSelect(topo=os.path.join(mddir,topo),project=proj)).select_atoms('name N C CA')
-    with open(os.path.join('PCA_results',f'{state}_covar.dat'),'rb') as f:
+    with open(os.path.join('PCA_results',f'{state}_covar.data'),'rb') as f:
         pca._covar=np.load(f,allow_pickle=False)
     with open(os.path.join('PCA_results',f'{state}_pcamp.data'),'rb') as f:
         pca._pcamp=np.load(f,allow_pickle=False)
     with open(os.path.join('PCA_results',f'{state}_mean.data'),'rb') as f:
         pca._mean=np.load(f,allow_pickle=False)    
-    w,v=eigsh(pca.CoVar,k=10,which='LM')    
-    i=np.argsort(w)[::-1]
-    pca._lambda,pca._PC=w[i],v[:,i]
+    with open(os.path.join('PCA_results',f'{state}_Lambda.data'),'rb') as f:
+        pca._lambda=np.load(f,allow_pickle=False) 
+    with open(os.path.join('PCA_results',f'{state}_PC.data'),'rb') as f:
+        pca._PC=np.load(f,allow_pickle=False)    
+        
+            
+    # w,v=eigsh(pca.CoVar,k=10,which='LM')    
+    # i=np.argsort(w)[::-1]
+    # pca._lambda,pca._PC=w[i],v[:,i]
 
     "Plot the 0th-3rd components of the PCA"
     #This creates an interactive plot, from which Figure 6 was generated      
