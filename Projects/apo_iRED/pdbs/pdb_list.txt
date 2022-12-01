@@ -1,0 +1,3 @@
+n15_IREDMODE_rk1_PAS_superimpose_WT_apo_run1_0_1ns_just_protein.data:WT-apo_run1_just_protein:/work/public/ghrelin-receptor/WT-apo_run1_just_protein.pdb
+n15_IREDMODE_rk1_PAS_superimpose_WT_apo_run2_0_1ns_just_protein.data:WT-apo_run1_just_protein:/work/public/ghrelin-receptor/WT-apo_run1_just_protein.pdb
+n15_IREDMODE_rk1_PAS_superimpose_WT_apo_run3_0_1ns_just_protein.data:WT-apo_run1_just_protein:/work/public/ghrelin-receptor/WT-apo_run1_just_protein.pdb
