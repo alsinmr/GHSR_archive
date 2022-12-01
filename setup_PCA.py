@@ -38,7 +38,7 @@ if not(os.path.exists('PCA_results')):os.mkdir('PCA_results')
 
 for topo,traj1,state in zip(topos,trajs,states):
     pca=PCA(pyDR.MolSelect(topo=os.path.join(mddir,topo),\
-              traj_files=[os.path.join(mddir,traj) for traj in traj1],step=1)).\
+              traj_files=[os.path.join(mddir,traj) for traj in traj1],step=1,tf=355000)).\
               select_atoms('name N C CA')
     pca.runPCA(n=10)
     with open(os.path.join('PCA_results',f'{state}_covar.data'),'wb') as f:
