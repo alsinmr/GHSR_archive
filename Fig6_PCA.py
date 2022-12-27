@@ -54,7 +54,7 @@ chimera=proj.chimera
 
 
 
-for n,(topo,state,pts0,ax0) in enumerate(zip(topos,states,pts,ax.T)):
+for n,(topo,state,pts0) in enumerate(zip(topos,states,pts)):
     """
     Note that the pyDR PCA module is not fully set up for export, so this is
     a little hack-y. We have saved parts of the analysis on a server and
@@ -103,7 +103,7 @@ for n,(topo,state,pts0,ax0) in enumerate(zip(topos,states,pts,ax.T)):
 
 from pyDR.misc.Averaging import avgDataObjs
 
-fig,ax=plt.subplots(4,2,squeeze=False)
+fig,ax=plt.subplots(10,2,squeeze=False)
 clr=plt.get_cmap('tab10')
 n=7 #Number of detectors
 
@@ -133,8 +133,10 @@ for topo,state,pts0,ax0 in zip(topos,states,pts,ax.T):
     fit0=avgDataObjs(fit0)
     fit0.detect.r_auto(n)
     fit=fit0.fit()
+    fit=fit.opt2dist(rhoz_cleanup=True)
     
     for m,a in enumerate(ax0):
+        if not(a.get_subplotspec().is_last_row()):a.set_xticklabels('')
         for k in range(n):
             a.bar(k,fit.R[m,k],color=clr(k),edgecolor='black')
             

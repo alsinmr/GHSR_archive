@@ -70,7 +70,34 @@ for k in range(13):
     command_line(commands)
     command_line('color #10:{0}@N,CA|#10:{1}@C,CA black'.format(sel.sel1[k].resid,sel.sel1[k].resid-1))
     
-    proj.chimera.savefig('rho{0}_resid{1}.png'.format(rho_index,sel.sel1[k].resid),options='transparentBackground True')
+    proj.chimera.savefig(f'rho{rho_index}_resid{sel.sel1[k].resid}.png',options='transparentBackground True')
+
+#%% Residues of Ghrelin: total correlation (not shown in paper)
+k=4  #Just one residue as example. Could also be run in a for loop
+
+proj.chimera.close()
+for m in range(10):
+    if m==9:
+        resids=np.arange(2,16)
+        clr=plt.get_cmap('Set1')(0)
+    elif m==0:
+        resids=np.concatenate(hlx)
+        index=np.logical_not(np.isin(np.arange(33,340),resids))
+        resids=np.arange(33,340)[index]
+        clr=plt.get_cmap('tab10')(8)
+    else:
+        resids=hlx[m-1]
+        clr=plt.get_cmap('tab10')(7 if m==8 else 7-m)
+    index=np.argwhere(np.isin(sel.sel1.resids,resids)).squeeze()
+    sel.chimera(x=1.25*np.abs(data.totalCCnorm[k][index]),index=index,color=clr)
+    command_line(['~show #{0}'.format(m+1),
+                  'show #{0}:'.format(m+1)+','.join([str(res) for res in resids])+'@N,C,CA',
+                  'show #{0}:{1}@N'.format(m+1,resids[-1]+1),
+                  'show #{0}:{1}@C'.format(m+1,resids[0]-1)])
+command_line(commands)
+command_line('color #10:{0}@N,CA|#10:{1}@C,CA black'.format(sel.sel1[k].resid,sel.sel1[k].resid-1))
+
+proj.chimera.savefig(f'total_resid{sel.sel1[k].resid}.png',options='transparentBackground True')
 
 #%% Octanyl group from Ghrelin    
 proj.chimera.close()
