@@ -99,46 +99,7 @@ for n,(topo,state,pts0) in enumerate(zip(topos,states,pts)):
     #Use chimera.savefig(filename) to save views in chimera to the project folder
     
 
-#%% Run detector analysis on first four principle components
 
-from pyDR.misc.Averaging import avgDataObjs
-
-fig,ax=plt.subplots(10,2,squeeze=False)
-clr=plt.get_cmap('tab10')
-n=7 #Number of detectors
-
-for topo,state,pts0,ax0 in zip(topos,states,pts,ax.T):
-    #Load the correct pca
-    pca=PCA(pyDR.MolSelect(topo=os.path.join(mddir,topo),
-                           project=proj)).select_atoms('name N C CA')
-    with open(os.path.join('PCA_results',f'{state}_covar.data'),'rb') as f:
-        pca._covar=np.load(f,allow_pickle=False)
-    with open(os.path.join('PCA_results',f'{state}_pcamp.data'),'rb') as f:
-        pca._pcamp=np.load(f,allow_pickle=False)
-    with open(os.path.join('PCA_results',f'{state}_mean.data'),'rb') as f:
-        pca._mean=np.load(f,allow_pickle=False)
-    with open(os.path.join('PCA_results',f'{state}_Lambda.data'),'rb') as f:
-        pca._lambda=np.load(f,allow_pickle=False) 
-    with open(os.path.join('PCA_results',f'{state}_PC.data'),'rb') as f:
-        pca._PC=np.load(f,allow_pickle=False)
-    pca._t=np.linspace(0,3*355000*.1,3*355000)
-        
-    fit0=list()
-    for k in range(3):
-        data=pca.PCA2data(t0=355000*k,tf=355000*(k+1))
-        
-        data.detect.r_no_opt(n)
-        fit0.append(data.fit())
-        print(k)
-    fit0=avgDataObjs(fit0)
-    fit0.detect.r_auto(n)
-    fit=fit0.fit()
-    fit=fit.opt2dist(rhoz_cleanup=True)
-    
-    for m,a in enumerate(ax0):
-        if not(a.get_subplotspec().is_last_row()):a.set_xticklabels('')
-        for k in range(n):
-            a.bar(k,fit.R[m,k],color=clr(k),edgecolor='black')
             
             
         
