@@ -1,0 +1,12 @@
+n7_PCAMODE_WT_apo_run1_just_protein.data:WT-apo_run1_just_protein:/Volumes/My Book/GHSR/WT-apo_run1_just_protein.pdb
+n7_PCAMODE_WT_apo_run1_just_protein1.data:WT-apo_run1_just_protein:/Volumes/My Book/GHSR/WT-apo_run1_just_protein.pdb
+n7_PCAMODE_WT_apo_run1_just_protein2.data:WT-apo_run1_just_protein:/Volumes/My Book/GHSR/WT-apo_run1_just_protein.pdb
+n7_PCAMODE_WT_ghrelin_run1_just_protein.data:WT-ghrelin_run1_just_protein:/Volumes/My Book/GHSR/WT-ghrelin_run1_just_protein.pdb
+n7_PCAMODE_WT_ghrelin_run1_just_protein1.data:WT-ghrelin_run1_just_protein:/Volumes/My Book/GHSR/WT-ghrelin_run1_just_protein.pdb
+n7_PCAMODE_WT_ghrelin_run1_just_protein2.data:WT-ghrelin_run1_just_protein:/Volumes/My Book/GHSR/WT-ghrelin_run1_just_protein.pdb
+n7_PCAMODE_WT_apo_run1_just_protein3.data:WT-apo_run1_just_protein:/Volumes/My Book/GHSR/WT-apo_run1_just_protein.pdb
+n7_PCAMODE_WT_ghrelin_run1_just_protein3.data:WT-ghrelin_run1_just_protein:/Volumes/My Book/GHSR/WT-ghrelin_run1_just_protein.pdb
+p7_PCAMODE_AvOb_WT_apo_run1_just_protein.data:WT-apo_run1_just_protein:/Volumes/My Book/GHSR/WT-apo_run1_just_protein.pdb
+p7_PCAMODE_AvOb_WT_ghrelin_run1_just_protein.data:WT-ghrelin_run1_just_protein:/Volumes/My Book/GHSR/WT-ghrelin_run1_just_protein.pdb
+o7_PCAMODE_AvOb_WT_apo_run1_just_protein.data:WT-apo_run1_just_protein:/Volumes/My Book/GHSR/WT-apo_run1_just_protein.pdb
+o7_PCAMODE_AvOb_WT_ghrelin_run1_just_protein.data:WT-ghrelin_run1_just_protein:/Volumes/My Book/GHSR/WT-ghrelin_run1_just_protein.pdb

@@ -11,26 +11,28 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pyDR.misc.Averaging import avgDataObjs
 from copy import copy
-import os
+
+# from pyDR.chimeraX.chimeraX_funs import set_chimera_path
+# set_chimera_path() #Put your own path to ChimeraX here!!
+#e.g. set_chimera_path('/Applications/ChimeraX-1.2.5.app/Contents/MacOS/ChimeraX')
 
 proj=pyDR.Project('Projects/aromatic_iRED')
 
 #%% FInish processing
-if not(len(proj['opt_fit'])):
+if not(len(proj['opt_fit'])):   #Make sure the fully-processed data is in the project
     proj.detect.r_auto(7)
     proj.fit()['proc'].opt2dist(rhoz_cleanup=True)
     proj.save()
     
-proj['opt_fit'].modes2bonds()
+proj['opt_fit'].modes2bonds()  #Convert mode detector analysis to bond detector analysis
 
-avgDataObjs(proj['iREDbond']['.+apo'])
-avgDataObjs(proj['iREDbond']['.+ghrelin'])
+avgDataObjs(proj['iREDbond']['.+apo'])     #Average over the 3 apo trajectories
+avgDataObjs(proj['iREDbond']['.+ghrelin']) #Average over the 3 bound trajectories
 
-sub=proj['iREDbond']['AvOb_rk1']
+sub=proj['iREDbond']['AvOb_rk1']    #Subproject containing the averaged data (2 data objects)
 
-
-
-resids=[128,215,220,221,222,226,272,279,280,284,286,290,309,312]
+resids=[128,215,220,221,222,226,272,279,280,284,286,290,309,312]   #Aromatic residues to plot
+# Below we get the indices of the above residues in the data objects
 sel=copy(sub[1].select)
 sel.select_bond(Nuc='15N',resids=resids)
 sel.repr_sel=[s.residues.atoms for s in sel.sel1]
@@ -43,7 +45,7 @@ nd=sub[0].ne-1
 w=0.45
 cmap=plt.get_cmap('tab10')
 
-#%% Make bar plot with just 276
+#%% Make bar plot with just 276 detector response
 ax=plt.figure().add_subplot(111)
 hatch=['','///']
 for m,(i0,s,h) in enumerate(zip(index0,sub,hatch)):
@@ -52,7 +54,7 @@ for m,(i0,s,h) in enumerate(zip(index0,sub,hatch)):
 ax.set_xlabel('Detector')
 ax.set_ylabel(r'$\rho_n^{(\theta,S)}$')
         
-#%% Plot correlation coefficient for all detectors
+#%% Plot correlation coefficient to 276 for all detectors
 
 fig=plt.figure()
 fig.clear()
@@ -76,46 +78,10 @@ for k,a in enumerate(ax):
         
     a.set_xticks(np.arange(sum(i)))
 
-    if a.is_last_row():
+    if a.get_subplotspec().is_last_row():
         a.set_xticklabels([str(sel[0].resid)+AA[sel[0].resname].symbol for sel in s.select.sel1[i]],rotation=90)
     else:
         a.set_xticklabels([])
-
-#%% Plot Chemical Shift prediction from SHIFTX2
-def load_file(filename='SHIFTX2/apo_run1_CA.txt'):
-    out={}
-    with open(filename,'r') as f:
-        for line in f:
-            resid,*shifts=line.strip().split('\t')
-            out[int(resid)]=np.array(shifts).astype(float)
-    return out
-
-apoCA=np.zeros([len(resids),3,710])
-for k in range(3):
-    out=load_file(f'SHIFTX2/apo_run{k+1}_CA.txt')
-    for m,resid in enumerate(resids):
-        apoCA[m,k]=out[resid]
-        
-boundCA=np.zeros([len(resids),3,710])
-for k in range(3):
-    out=load_file(f'SHIFTX2/ghrelin_run{k+1}_CA.txt')
-    for m,resid in enumerate(resids):
-        boundCA[m,k]=out[resid]
-        
-
-w=0.4
-ax=plt.figure().add_subplot(111)
-shift=apoCA.reshape([len(resids),3*710])
-ax.bar(np.arange(len(resids))-w/2,shift.mean(1),color='grey',edgecolor='black',width=w)
-# ax.errorbar(np.arange(len(resids))-w/2,shift.mean(1),shift.std(1),color='black',capsize=4,linestyle='')        
-ax.errorbar(np.arange(len(resids))-w/2,shift.mean(1),apoCA.mean(-1).std(1),color='black',capsize=4,linestyle='')        
-shift=boundCA.reshape([len(resids),3*710])
-ax.bar(np.arange(len(resids))+w/2,shift.mean(1),color='darkgrey',edgecolor='black',width=w)
-ax.errorbar(np.arange(len(resids))+w/2,shift.mean(1),boundCA.mean(-1).std(1),color='black',capsize=4,linestyle='')
-ax.set_xticks(range(len(resids)))
-ax.set_xticklabels(resids,rotation=90)
-ax.set_ylabel(r'$\delta^{C\alpha}$ / ppm')
-ax.set_ylim([56.5,62.5])
 
 
 #%% Make chimera plots
@@ -140,3 +106,12 @@ for k in range(6):
         sel0.chimera(x=x.T,color=cmap(k))
     sub.chimera.command_line(cmx_cmds)
     sub.chimera.savefig('toggle_switchCC_rho{0}.png'.format(k),options='transparentBackground True')
+
+plt.show()
+
+#%% Save results to a text file (attached to paper, also in github in source_data folder)
+from misc_functions import save_detectors
+
+titles=['Sidechain correlation to 276W for apo GHSR','Sidechain correlation to 276W for ghrelin-bound GHSR']
+data=[d for d in proj['iREDbond']['.+AvOb']]
+save_detectors(fignum=5,data=data,titles=titles,CCindex=['276'])

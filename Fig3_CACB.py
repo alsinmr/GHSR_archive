@@ -9,6 +9,11 @@ Created on Tue Nov 22 16:27:42 2022
 import pyDR
 from misc_functions import load_helices
 from pyDR.misc.Averaging import avgDataObjs
+import matplotlib.pyplot as plt
+
+# from pyDR.chimeraX.chimeraX_funs import set_chimera_path
+# set_chimera_path() #Put your own path to ChimeraX here!!
+#e.g. set_chimera_path('/Applications/ChimeraX-1.2.5.app/Contents/MacOS/ChimeraX')
 
 
 #%% Finish processing
@@ -86,3 +91,12 @@ proj.chimera.command_line(['~show','~ribbon','sel #2'+sel_str+'@N,C,CA,CB',
                            'zoom 1.3','turn y -10','color #2/A slate grey'])
 proj.chimera.savefig(f'Hlx5to7_bound_rho{rho_index}.png',options='transparentBackground True')
     
+
+plt.show()
+
+#%% Save results to a text file (attached to paper, also in github in source_data folder)
+from misc_functions import save_detectors
+
+data=[d for d in sub]  #Needs to be a list
+titles=['Ca-Cb motion for apo GHSR','Ca-Cb motion for ghrelin-bound GHSR']
+save_detectors(fignum=2,data=data,titles=titles)

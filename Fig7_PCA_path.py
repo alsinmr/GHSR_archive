@@ -9,10 +9,13 @@ Created on Tue Dec  6 16:31:32 2022
 import pyDR
 from pyDR.PCA import PCA
 import numpy as np
-from misc_functions import load_helices
 import os
 import matplotlib.pyplot as plt
 from pyDR.PCA.mouse_path import Path2Energy
+
+# from pyDR.chimeraX.chimeraX_funs import set_chimera_path
+# set_chimera_path() #Put your own path to ChimeraX here!!
+#e.g. set_chimera_path('/Applications/ChimeraX-1.2.5.app/Contents/MacOS/ChimeraX')
 
 
 #%% File locations
@@ -54,7 +57,7 @@ with open(os.path.join('PCA_results',f'{state}_PC.data'),'rb') as f:
 p2e=Path2Energy(pca)
 
 p2e.create_plots(cmap='nipy_spectral',maxbin=120,nmax=1,mode='points')
-pts=np.array([[ -0.96774194,  79.48051948],
+pts=np.array([[ -0.96774194,  79.48051948],  #These points define the path through the trajectory
        [ -1.4516129 ,  53.50649351],
        [ -3.38709677,  25.58441558],
        [-24.19354839,  12.5974026 ],
@@ -103,39 +106,62 @@ for m,view in enumerate([[],['turn x 90','zoom 1.5'],['turn x 180']]):
 
 from pyDR.misc.Averaging import avgDataObjs
 
-fig,ax=plt.subplots(10,2,squeeze=False)
-clr=plt.get_cmap('tab10')
+
 n=7 #Number of detectors
 
-for topo,state,pts0,ax0 in zip(topos,states,pts,ax.T):
-    #Load the correct pca
-    pca=PCA(pyDR.MolSelect(topo=os.path.join(mddir,topo),
-                           project=proj)).select_atoms('name N C CA')
-    with open(os.path.join('PCA_results',f'{state}_covar.data'),'rb') as f:
-        pca._covar=np.load(f,allow_pickle=False)
-    with open(os.path.join('PCA_results',f'{state}_pcamp.data'),'rb') as f:
-        pca._pcamp=np.load(f,allow_pickle=False)
-    with open(os.path.join('PCA_results',f'{state}_mean.data'),'rb') as f:
-        pca._mean=np.load(f,allow_pickle=False)
-    with open(os.path.join('PCA_results',f'{state}_Lambda.data'),'rb') as f:
-        pca._lambda=np.load(f,allow_pickle=False) 
-    with open(os.path.join('PCA_results',f'{state}_PC.data'),'rb') as f:
-        pca._PC=np.load(f,allow_pickle=False)
-    pca._t=np.linspace(0,3*355000*.1,3*355000)
+lengths=[[372685,364134,328181],[364893,357953,342154]]
+
+for q,(topo,state,pts0,length) in enumerate(zip(topos,states,pts,lengths)):
+    if len(proj)<(q+1)*6:
+        #Load the correct pca
+        pca=PCA(pyDR.MolSelect(topo=os.path.join(mddir,topo),
+                               project=proj)).select_atoms('name N C CA')
+        with open(os.path.join('PCA_results',f'{state}_covar.data'),'rb') as f:
+            pca._covar=np.load(f,allow_pickle=False)
+        with open(os.path.join('PCA_results',f'{state}_pcamp.data'),'rb') as f:
+            pca._pcamp=np.load(f,allow_pickle=False)
+        with open(os.path.join('PCA_results',f'{state}_mean.data'),'rb') as f:
+            pca._mean=np.load(f,allow_pickle=False)
+        with open(os.path.join('PCA_results',f'{state}_Lambda.data'),'rb') as f:
+            pca._lambda=np.load(f,allow_pickle=False) 
+        with open(os.path.join('PCA_results',f'{state}_PC.data'),'rb') as f:
+            pca._PC=np.load(f,allow_pickle=False)
+        pca._t=np.linspace(0,3*355000*.1,3*355000)
+            
+        fit0=list()
+        for k in range(3):
+            data=pca.PCA2data(t0=sum(length[:k]),tf=sum(length[:k+1]))
+            
+            data.detect.r_no_opt(n)
+            fit0.append(data.fit())
+            print(k)
+        proj.clear_memory()
+        fit0=avgDataObjs(proj['no_opt'][-3:])
+        fit0.detect.r_auto(n)
+        fit=fit0.fit()
+        fit=fit.opt2dist(rhoz_cleanup=True)
         
-    fit0=list()
-    for k in range(3):
-        data=pca.PCA2data(t0=355000*k,tf=355000*(k+1))
+        proj.save()
         
-        data.detect.r_no_opt(n)
-        fit0.append(data.fit())
-        print(k)
-    fit0=avgDataObjs(fit0)
-    fit0.detect.r_auto(n)
-    fit=fit0.fit()
-    fit=fit.opt2dist(rhoz_cleanup=True)
-    
+#%% Plot the results
+fig,ax=plt.subplots(10,2,squeeze=False)
+clr=plt.get_cmap('tab10')
+for q,(ax0,key) in enumerate(zip(ax.T,['apo','ghrelin'])):
+    fit=proj['opt_fit']['.+'+key]
+    ax0[0].set_title(key)
     for m,a in enumerate(ax0):
-        if not(a.get_subplotspec().is_last_row()):a.set_xticklabels('')
+        if not(a.get_subplotspec().is_last_row()):a.set_xticklabels('')    
         for k in range(n):
             a.bar(k,fit.R[m,k],color=clr(k),edgecolor='black')
+
+
+plt.show()
+
+#%% Save the results to a text file
+from misc_functions import save_detectors,save_PCA_path_energy
+titles=['PCA components 0-9 for apo GHSR','PCA components 0-9 for ghrelin-bound GHSR']
+save_detectors(7,[d for d in proj['opt_fit']],titles)
+os.rename('source_data/Figure7.txt', 'source_data/Figure7_PCAdet.txt')
+
+save_PCA_path_energy(7,p2e.get_path(), p2e.get_DelG(),title='Apo GHSR')
+os.rename('source_data/Figure7.txt', 'source_data/Figure7_pathEnergy.txt')

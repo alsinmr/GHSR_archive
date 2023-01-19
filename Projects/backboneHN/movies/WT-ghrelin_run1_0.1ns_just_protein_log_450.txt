@@ -1,0 +1,10 @@
+Topo: /Volumes/My Book/GHSR/WT-ghrelin_run1_just_protein.pdb
+Trajectory: /Volumes/My Book/GHSR/WT-ghrelin_run1_0.1ns_just_protein.xtc	
+Spacing: log
+nt: 450
+Initial Rate (ns/s): 0.004999999999999998
+Final Rate (ns/s): 500.00000000000006
+dt (ns): 0.1
+Frame rate (frames/s): 15
+No. Atoms: 5279
+No. Frames: 450

@@ -1,0 +1,96 @@
+DATA
+Type:	PCAmode
+status:	no_opt
+short_file:	WT-apo_run1_just_protein.pdb
+title:	n7:PCAMODE:WT-apo_run1_just_protein
+additional_info:	None
+filename:	n7_PCAMODE_WT_apo_run1_just_protein.data
+END:DATA
+DATA
+Type:	PCAmode
+status:	no_opt
+short_file:	WT-apo_run1_just_protein.pdb
+title:	n7:PCAMODE:WT-apo_run1_just_protein
+additional_info:	None
+filename:	n7_PCAMODE_WT_apo_run1_just_protein1.data
+END:DATA
+DATA
+Type:	PCAmode
+status:	no_opt
+short_file:	WT-apo_run1_just_protein.pdb
+title:	n7:PCAMODE:WT-apo_run1_just_protein
+additional_info:	None
+filename:	n7_PCAMODE_WT_apo_run1_just_protein2.data
+END:DATA
+DATA
+Type:	PCAmode
+status:	no_opt
+short_file:	WT-ghrelin_run1_just_protein.pdb
+title:	n7:PCAMODE:WT-ghrelin_run1_just_protein
+additional_info:	None
+filename:	n7_PCAMODE_WT_ghrelin_run1_just_protein.data
+END:DATA
+DATA
+Type:	PCAmode
+status:	no_opt
+short_file:	WT-ghrelin_run1_just_protein.pdb
+title:	n7:PCAMODE:WT-ghrelin_run1_just_protein
+additional_info:	None
+filename:	n7_PCAMODE_WT_ghrelin_run1_just_protein1.data
+END:DATA
+DATA
+Type:	PCAmode
+status:	no_opt
+short_file:	WT-ghrelin_run1_just_protein.pdb
+title:	n7:PCAMODE:WT-ghrelin_run1_just_protein
+additional_info:	None
+filename:	n7_PCAMODE_WT_ghrelin_run1_just_protein2.data
+END:DATA
+DATA
+Type:	PCAmode
+status:	no_opt
+short_file:	WT-apo_run1_just_protein.pdb
+title:	n7:PCAMODE:AvOb:WT-apo_run1_just_protein
+additional_info:	AvOb
+filename:	n7_PCAMODE_WT_apo_run1_just_protein3.data
+END:DATA
+DATA
+Type:	PCAmode
+status:	no_opt
+short_file:	WT-ghrelin_run1_just_protein.pdb
+title:	n7:PCAMODE:AvOb:WT-ghrelin_run1_just_protein
+additional_info:	AvOb
+filename:	n7_PCAMODE_WT_ghrelin_run1_just_protein3.data
+END:DATA
+DATA
+Type:	PCAmode
+status:	proc
+short_file:	WT-apo_run1_just_protein.pdb
+title:	p7:PCAMODE:AvOb:WT-apo_run1_just_protein
+additional_info:	AvOb
+filename:	p7_PCAMODE_AvOb_WT_apo_run1_just_protein.data
+END:DATA
+DATA
+Type:	PCAmode
+status:	proc
+short_file:	WT-ghrelin_run1_just_protein.pdb
+title:	p7:PCAMODE:AvOb:WT-ghrelin_run1_just_protein
+additional_info:	AvOb
+filename:	p7_PCAMODE_AvOb_WT_ghrelin_run1_just_protein.data
+END:DATA
+DATA
+Type:	PCAmode
+status:	opt_fit
+short_file:	WT-apo_run1_just_protein.pdb
+title:	o7:PCAMODE:AvOb:WT-apo_run1_just_protein
+additional_info:	AvOb
+filename:	o7_PCAMODE_AvOb_WT_apo_run1_just_protein.data
+END:DATA
+DATA
+Type:	PCAmode
+status:	opt_fit
+short_file:	WT-ghrelin_run1_just_protein.pdb
+title:	o7:PCAMODE:AvOb:WT-ghrelin_run1_just_protein
+additional_info:	AvOb
+filename:	o7_PCAMODE_AvOb_WT_ghrelin_run1_just_protein.data
+END:DATA
