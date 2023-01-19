@@ -12,9 +12,10 @@ import matplotlib.pyplot as plt
 from pyDR.misc.Averaging import avgDataObjs
 from copy import copy
 
+"If first time running pyDR with chimeraX, uncomment the lines below, and provide chimeraX path"
 # from pyDR.chimeraX.chimeraX_funs import set_chimera_path
 # set_chimera_path() #Put your own path to ChimeraX here!!
-#e.g. set_chimera_path('/Applications/ChimeraX-1.2.5.app/Contents/MacOS/ChimeraX')
+"e.g. set_chimera_path('/Applications/ChimeraX-1.2.5.app/Contents/MacOS/ChimeraX')"
 
 proj=pyDR.Project('Projects/aromatic_iRED')
 

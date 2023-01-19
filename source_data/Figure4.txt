@@ -3,7 +3,7 @@
 ############################################################
 
 
-DATA SET #1: Ca-Cb motion for apo GHSR
+DATA SET #1: H–N correlation for bound GHSR
 Detector responses for 2
           0        1        2        3        4        5        6        
         2 0.061750 0.028199 0.056647 0.088178 0.171600 0.127447 0.004745
