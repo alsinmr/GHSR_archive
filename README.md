@@ -9,6 +9,7 @@ by
 Albert A. Smith, Emelyne M. Pacull, Sabrina Stecher, Peter W. Hildebrand, Alexander Vogel, Daniel Huster 
 
 The following scripts can be run at the command line to produce components of figures in the paper and SI. These will also produce the source data files.
+
 Fig1_overall.py,
 Fig3_CACB.py,
 Fig4_ghrelinCC.py,
@@ -20,6 +21,7 @@ SI_Fig4_PCA_path.py
 
 The following scripts are provided for transparency in the data processing, but cannot be run without access to the full MD trajectories. 
 These scripts create the five project folders found in Projects/, and also the folder PCA_results
+
 setup_direct.py,
 setup_directCACB.py,
 setup_iRED_aromatic.py,
@@ -50,4 +52,4 @@ All files are copyrighted under the GNU General Public License. A copy of the li
 
 Copyright 2023 Albert Smith-Penzel
 
-This research was supported by Deutsche Forschungsgemeinschaft (DFG) through CRC 1423, project number 421152132, subproject A02 and through DFG grant 450148812 (awarded to Albert A. Smith)
+This research was supported by Deutsche Forschungsgemeinschaft (DFG) through CRC 1423, project number 421152132, subproject A02 (D. Huster, P. Hildebrand) and through DFG grant 450148812 (A. A. Smith)
