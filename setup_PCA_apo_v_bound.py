@@ -24,11 +24,9 @@ trajs=[*[f'WT-apo_run{k}_0.1ns_just_protein.xtc' for k in range(1,4)],
        *[f'WT-ghrelin_run{k}_0.1ns_just_protein.xtc' for k in range(1,4)]]
 
 
-mddir='/Volumes/My Book/GHSR'
-topos=['WT-apo_run1_just_protein.pdb','WT-ghrelin_run1_just_protein.pdb']
-trajs=['WT-apo_run1_0.1ns_just_protein.xtc','WT-ghrelin_run1_0.1ns_just_protein.xtc']
-
-states=['apo','bound']
+# mddir='/Volumes/My Book/GHSR'
+# topos=['WT-apo_run1_just_protein.pdb','WT-ghrelin_run1_just_protein.pdb']
+# trajs=['WT-apo_run1_0.1ns_just_protein.xtc','WT-ghrelin_run1_0.1ns_just_protein.xtc']
 
 #%% Save part of PCA
 """ 
@@ -43,12 +41,11 @@ Currently, PCA objects in pyDR cannot be saved.
 if not(os.path.exists('PCA_avb_results')):os.mkdir('PCA_avb_results')
 
 tf=355000
-step=100
+step=1
 pos=None
 
-tf=170000
 
-for topo,traj,state in zip(topos,trajs,states):
+for topo,traj in zip(topos,trajs):
     pca=PCA(pyDR.MolSelect(topo=os.path.join(mddir,topo),\
               traj_files=os.path.join(mddir,traj),step=step,tf=tf)).\
               select_atoms('name N C CA and resid 30-400')
@@ -61,13 +58,13 @@ pca._pos=pos
 pca.align()
 
 pca.runPCA(n=10)
-with open(os.path.join('PCA_avb_results',f'{state}_covar.data'),'wb') as f:
+with open(os.path.join('PCA_avb_results',f'covar.data'),'wb') as f:
     np.save(f,pca.CoVar,allow_pickle=False)
-with open(os.path.join('PCA_avb_results',f'{state}_Lambda.data'),'wb') as f:
+with open(os.path.join('PCA_avb_results',f'Lambda.data'),'wb') as f:
     np.save(f,pca.Lambda,allow_pickle=False)
-with open(os.path.join('PCA_avb_results',f'{state}_PC.data'),'wb') as f:
+with open(os.path.join('PCA_avb_results',f'PC.data'),'wb') as f:
     np.save(f,pca.PC,allow_pickle=False)
-with open(os.path.join('PCA_avb_results',f'{state}_pcamp.data'),'wb') as f:
+with open(os.path.join('PCA_avb_results',f'pcamp.data'),'wb') as f:
     np.save(f,pca.PCamp,allow_pickle=False)
-with open(os.path.join('PCA_avb_results',f'{state}_mean.data'),'wb') as f:
+with open(os.path.join('PCA_avb_results',f'mean.data'),'wb') as f:
     np.save(f,pca.mean,allow_pickle=False)
