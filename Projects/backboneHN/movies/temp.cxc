@@ -1,4 +1,0 @@
-movie record
-coordset #0
-wait 875
-movie encode "GHSR_fader.mp4" framerate 15

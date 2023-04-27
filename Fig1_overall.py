@@ -10,6 +10,7 @@ Created on Mon Nov 21 15:15:16 2022
 import pyDR
 from pyDR.misc.Averaging import avgDataObjs
 import matplotlib.pyplot as plt
+import numpy as np
 
 "If first time running pyDR with chimeraX, uncomment the lines below, and provide chimeraX path"
 # from pyDR.chimeraX.chimeraX_funs import set_chimera_path
@@ -49,10 +50,19 @@ cmds=['~show ~@N,C,CA,H','~show #2/A','show #2/A@N,C,CA','color #2/A slate grey'
       'turn x -90','turn y 15 models #1','turn y 15 models #2',''
       'lighting full','graphics silhouettes true','view','zoom 1.15',
       f'move x -{proj[-1].select.box[0]} coordinateSystem #2 atoms #2/A']
+
+hlx=[(41,70),(78,105),(114,145),(158,181),(209,237),(253,289),(296,326),(327,339)]
+tan=[82,71,55]
+frac=.4
+clrs=[[int(v*100*(1-frac)+frac*tan[k]) for k,v in enumerate(plt.get_cmap('tab10')(m)[:-1])] for m in [*range(6,-1,-1),7]]
+
 for k in range(proj[-1].R.shape[1]):
     proj.chimera.close()
     proj['opt_fit'].chimera(scaling=1.5,rho_index=k)
     proj.chimera.command_line(cmds)
+    proj.chimera.command_line(f'color :30-340 {tan[0]},{tan[1]},{tan[2]} target b halfbond false')
+    for hlx0,color in zip(hlx,clrs):
+        proj.chimera.command_line(f'color :{hlx0[0]}-{hlx0[1]} {color[0]},{color[1]},{color[2]} target b halfbond false')
     proj.chimera.savefig('rho{0}'.format(k),'transparentBackground True')
     
 plt.show()

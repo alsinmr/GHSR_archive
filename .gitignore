@@ -119,3 +119,4 @@ dmypy.json
 
 # Misc
 **/.DS_store
+**/chimera_script*.py

@@ -198,7 +198,7 @@ class PCA():
         self.traj.ProgressBar=True
         pos=np.array([atoms.positions for _ in self.traj])
 
-        self.source=clsDict['Source'](Type='PCAmode',select=copy(self.select),filename=self.traj.files,
+        self._source=clsDict['Source'](Type='PCAmode',select=copy(self.select),filename=self.traj.files,
                       status='raw')
         self.source.details.append('PCA analysis')
         self.source.details.append(self.select.details)
@@ -605,7 +605,7 @@ class PCA():
         markers=['x','o','+','v','>','s','1','*']
         for pt in pts:
             self.chimera(PCamp=pt)
-            mdls=self.project.chimera.CMX.how_many_models(self.project.chimera.CMXid)
+            mdls=self.project.chimera.CMX.how_many_models(self.project.chimera.CMXid)-1
             for a,n0,n1 in zip(ax,range(nmax),range(1,nmax+1)):
                 a.scatter(pt[n0],pt[n1],100,marker=markers[mdls%len(markers)],linewidth=3,color=cmap(mdls%10))
                 
