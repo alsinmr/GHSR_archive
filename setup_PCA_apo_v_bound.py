@@ -58,13 +58,13 @@ pca._pos=pos
 pca.align()
 
 pca.runPCA(n=10)
-with open(os.path.join('PCA_avb_results',f'covar.data'),'wb') as f:
+with open(os.path.join('PCA_avb_results','covar.data'),'wb') as f:
     np.save(f,pca.CoVar,allow_pickle=False)
-with open(os.path.join('PCA_avb_results',f'Lambda.data'),'wb') as f:
+with open(os.path.join('PCA_avb_results','Lambda.data'),'wb') as f:
     np.save(f,pca.Lambda,allow_pickle=False)
-with open(os.path.join('PCA_avb_results',f'PC.data'),'wb') as f:
+with open(os.path.join('PCA_avb_results','PC.data'),'wb') as f:
     np.save(f,pca.PC,allow_pickle=False)
-with open(os.path.join('PCA_avb_results',f'pcamp.data'),'wb') as f:
+with open(os.path.join('PCA_avb_results','pcamp.data'),'wb') as f:
     np.save(f,pca.PCamp,allow_pickle=False)
-with open(os.path.join('PCA_avb_results',f'mean.data'),'wb') as f:
+with open(os.path.join('PCA_avb_results','mean.data'),'wb') as f:
     np.save(f,pca.mean,allow_pickle=False)
