@@ -70,7 +70,6 @@ for q in range(2):
         sel1=uni.select_atoms('resid 276 and not name H*')
         
         
-        resids=[128,215,220,221,222,226,272,279,280,284,286,290,309,312]
         sel2=[uni.select_atoms(f'resid {res} and not name H*') for res in resids]
         index=[]
         for k,sel20 in enumerate(sel2):
