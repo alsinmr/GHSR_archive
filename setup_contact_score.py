@@ -39,7 +39,7 @@ for k,sel20 in enumerate(sel2):
     index.append(np.arange(start,start+len(sel20)))
 
 sel2=sum(sel2)
-# sel1=copy(sel2)
+sel1=copy(sel2)
 
 l1=len(sel1)
 sel1=sum([sel1 for _ in range(len(sel2))])
@@ -78,7 +78,7 @@ for traj0 in trajs[1]:
         index.append(np.arange(start,start+len(sel20)))
     
     sel2=sum(sel2)
-    # sel1=copy(sel2)
+    sel1=copy(sel2)
     
     l1=len(sel1)
     sel1=sum([sel1 for _ in range(len(sel2))])
