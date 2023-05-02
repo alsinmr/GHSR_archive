@@ -104,9 +104,3 @@ with open(os.path.join('contact_score','r0.data'),'wb') as f:
 
 
 
-#%% Calculate Q
-beta=5
-Lambda=1.
-Q=(1/(1+np.exp(beta*(R-Lambda*r0)))).mean(1)
-ax=plt.figure().add_subplot(111)
-ax.plot(Q)
