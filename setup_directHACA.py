@@ -55,9 +55,9 @@ for topo,traj1 in zip(topos,trajs):
 
         proj[-1].detect.r_no_opt(15)
         proj[-1].fit()
-        proj.clear_memory()
-        
 
         proj[-1].source.additional_info=None
+        
+        proj.update_info()
         proj.save()
             
