@@ -19,13 +19,23 @@ with open(os.path.join('contact_score','r0.data'),'rb') as f:
 
 
 #%% Calculate Q
-beta=2
-Lambda=1
-Q=(1/(1+np.exp(beta*(R-Lambda*r0))))
+t=np.arange(R.shape[0]//3)*10
 
-i=np.std(Q,axis=0)>.3
-Q=Q.T[i].mean(0)
+beta=5
 
-fig,ax=plt.subplots(3,1)
-for k,a in enumerate(ax):
-    a.plot(Q[len(Q)//3*k:len(Q)//3*(k+1)])
+fig,ax=plt.subplots(3,2)
+for Lambda,ax0 in zip([1.8,1],ax.T):
+    
+    Q=(1/(1+np.exp(beta*(R-Lambda*r0)))).mean(1)
+    
+    for k,a in enumerate(ax0):
+        a.plot(t,Q[len(Q)//3*k:len(Q)//3*(k+1)])
+        if a.get_subplotspec().is_last_row():
+            a.set_xlabel('t / ns')
+        else:
+            a.set_xticklabels('')
+        if a.get_subplotspec().is_first_row():
+            a.set_title(r'$\lambda = $'+f'{Lambda}')
+        if a.get_subplotspec().is_first_col():
+            a.set_ylabel('Q')
+    
