@@ -51,7 +51,7 @@ r=np.zeros([len(uni.trajectory)//step+1,len(sel1)])
 
 
 for k,_ in enumerate(uni.trajectory[::step]):
-    if k%1000==0:print(f'{k} out of {len(uni.trajectory)}')
+    if k%1000==0:print(f'{k} out of {len(uni.trajectory[::step])}')
     r[k]=np.sqrt(((sel1.positions-sel2.positions)**2).sum(1))
         
 #%% Determine mean distances, index of contacts
@@ -90,6 +90,7 @@ for traj0 in trajs[1]:
     #%% Sweep over the trajectory
     R.append(np.zeros([len(uni.trajectory[:tf:step]),len(sel1)]))
     for k,_ in enumerate(uni.trajectory[:tf:step]):
+        if k%1000==0:print(f'{k} out of {len(uni.trajectory[:tf:step])}')
         R[-1][k]=np.sqrt(((sel1.positions-sel2.positions)**2).sum(1))
 R=np.concatenate(R,axis=0)
 
