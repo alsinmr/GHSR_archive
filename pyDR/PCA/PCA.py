@@ -452,7 +452,7 @@ class PCA():
             self._pcamp=(mat0@self.PC).T
         return self._pcamp
     
-    def plot(self,n0:int=0,n1:int=1,ax=None,maxbin:float=None,nbins:int=None,**kwargs):
+    def plot(self,n0:int=0,n1:int=1,ax=None,maxbin:float=None,nbins:int=None,index=None,**kwargs):
         """
         Creates a 2D histogram of two principal components. Specify the desired
         components (n0,n1=0,1 by default)
@@ -484,7 +484,8 @@ class PCA():
         if nbins is None:
             nbins=min([100,self.PCamp.shape[1]//4])
         
-        out=ax.hist2d(self.PCamp[n0],self.PCamp[n1],bins=np.linspace(-maxbin,maxbin,nbins),**kwargs)
+        if index is None:index=np.ones(self.t.shape,dtype=bool)
+        out=ax.hist2d(self.PCamp[n0][index],self.PCamp[n1][index],bins=np.linspace(-maxbin,maxbin,nbins),**kwargs)
         ax.set_xlabel(f'PC {n0}')
         ax.set_ylabel(f'PC {n1}')
         return out
