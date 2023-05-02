@@ -40,22 +40,22 @@ for topo,traj1 in zip(topos,trajs):
                            step=100,project=proj,tf=355000)
         resids=sel.uni.residues.resids
         
-        for k in range(5):  #Process in 5 chunks
-            sel.select_bond(Nuc='CA',resids=[186,258,280])            #Select HA–CA bonds
-            frames=pyDR.Frames.FrameObj(sel)    #Create frame object 
-            frames.tensor_frame(sel1=1,sel2=2)  #Define tensor frame (H–N bond)
-            _,hlx=load_helices()  #Use helices for alignment
-            
-            fr_sel=sel.molsys.select_filter(resids=np.concatenate(hlx),filter_str='name CA')
-            frames.new_frame(Type='superimpose',sel=fr_sel)  #Remove overall motion
-            
-            frames.frames2data()
-            
-            proj.remove_data([-4,-3,-1],delete=True)
 
-            proj[-1].detect.r_no_opt(15)
-            proj[-1].fit()
-            proj.clear_memory()
+        sel.select_bond(Nuc='CA',resids=[186,258,280])            #Select HA–CA bonds
+        frames=pyDR.Frames.FrameObj(sel)    #Create frame object 
+        frames.tensor_frame(sel1=1,sel2=2)  #Define tensor frame (HA–CA bond)
+        _,hlx=load_helices()  #Use helices for alignment
+        
+        fr_sel=sel.molsys.select_filter(resids=np.concatenate(hlx),filter_str='name CA')
+        frames.new_frame(Type='superimpose',sel=fr_sel)  #Remove overall motion
+        
+        frames.frames2data()
+        
+        proj.remove_data([-4,-3,-1],delete=True)
+
+        proj[-1].detect.r_no_opt(15)
+        proj[-1].fit()
+        proj.clear_memory()
         
 
         proj[-1].source.additional_info=None
