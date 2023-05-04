@@ -41,7 +41,7 @@ Additionally, ChimeraX must be installed and its location provided to pyDR. How 
 
 We recommend installing Anaconda: https://docs.continuum.io/anaconda/install/
 The Anaconda installation includes Python, numpy, scipy, pandas, and matplotlib. 
-(I also highly recommend using Spyder, which comes with Anaconda, for running the provided scripts interactively, such that one may stop to understand each step in the overall analysis)
+(I also highly recommend using Spyder, which comes with Anaconda, or some other variant of iPython for running the provided scripts interactively, such that one may stop to understand each step in the overall analysis)
 
 MDAnalysis is installed by running:
 conda config --add channels conda-forge
