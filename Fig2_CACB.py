@@ -70,27 +70,27 @@ for k in range(7):
 r=ranges[1]
 sc=2
 r0=[207,256]
-rho_index=5
 
+for rho_index in range(6):
 # ranges=[[157,184],[210,239],[253,327]]
-ranges=[[201,239],[253,327]]
-
-sel_str=':'+','.join(['{}-{}'.format(*r) for r in ranges])
-
-proj.chimera.close()
-proj['opt_fit'].chimera(rho_index=rho_index,scaling=sc)
-
-proj.chimera.command_line(['~show','~ribbon','sel #1'+sel_str+'@N,C,CA,CB',
-                           'ribbon #1','~ribbon sel','show sel',
-                           'color #1&~sel light steel blue','~sel',
-                           'turn x -90','turn y -75','turn z 15','view']) 
-proj.chimera.savefig(f'Hlx5to7_apo_rho{rho_index}.png',options='transparentBackground True')
-
-proj.chimera.command_line(['~show','~ribbon','sel #2'+sel_str+'@N,C,CA,CB',
-                           'ribbon #2','~ribbon sel','show sel',
-                           'color #2&~sel light steel blue','~sel','view #2','clip off',
-                           'zoom 1.3','turn y -10','color #2/A slate grey'])
-proj.chimera.savefig(f'Hlx5to7_bound_rho{rho_index}.png',options='transparentBackground True')
+    ranges=[[201,239],[253,327]]
+    
+    sel_str=':'+','.join(['{}-{}'.format(*r) for r in ranges])
+    
+    proj.chimera.close()
+    proj['opt_fit'].chimera(rho_index=rho_index,scaling=sc)
+    
+    proj.chimera.command_line(['~show','~ribbon','sel #1'+sel_str+'@N,C,CA,CB',
+                               'ribbon #1','~ribbon sel','show sel',
+                               'color #1&~sel light steel blue','~sel',
+                               'turn x -90','turn y -75','turn z 15','view','turn y 180','turn z 35']) 
+    proj.chimera.savefig(f'Hlx5to7_apo_rho{rho_index}.png',options='transparentBackground True')
+    
+    proj.chimera.command_line(['~show','~ribbon','sel #2'+sel_str+'@N,C,CA,CB',
+                               'ribbon #2','~ribbon sel','show sel',
+                               'color #2&~sel light steel blue','~sel','view #2','clip off',
+                               'zoom 1.3','turn y -10','color #2/A slate grey','turn y 30'])
+    proj.chimera.savefig(f'Hlx5to7_bound_rho{rho_index}.png',options='transparentBackground True')
     
 
 plt.show()
